@@ -9,7 +9,7 @@
   <title>Cyclocross UCI | MEDDOUR Noa</title>
   <style>
     :root { --uci-red:#e10600; --dark:#111; --light:#f5f5f5; }
-    body { margin:0; font-family:Arial,sans-serif; background:var(--light); color:#222; line-height:1.6; }
+    body { margin:0; font-family:Arial,sans-serif; background:var(--light); color:#222; line-height:1.6; transition: background 0.3s, color 0.3s; }
     header { background:url('https://images.unsplash.com/photo-1541625602330-2277a4c46182') center/cover no-repeat; color:white; padding:5rem 2rem; text-align:center; }
     header h1 { font-size:3rem; margin-bottom:0.5rem; }
     header p { font-size:1.2rem; max-width:700px; margin:auto; }
@@ -17,11 +17,11 @@
     nav a { color:white; text-decoration:none; font-weight:bold; }
     nav a:hover { text-decoration:underline; }
     main { max-width:1200px; margin:auto; padding:3rem 2rem; }
-    section { margin-bottom:4rem; background:white; padding:2.5rem; border-radius:14px; box-shadow:0 10px 25px rgba(0,0,0,0.1); }
+    section { margin-bottom:4rem; background:white; padding:2.5rem; border-radius:14px; box-shadow:0 10px 25px rgba(0,0,0,0.1); transition: background 0.3s; }
     h2 { color:var(--uci-red); margin-top:0; font-size:2rem; }
     .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:2rem; }
-    .card { background:#fafafa; padding:2rem; border-radius:12px; border-top:6px solid var(--uci-red); opacity:0; transform:translateY(20px); transition:all 0.6s ease; }
-    .card.visible { opacity:1; transform:translateY(0); }
+    .card { background:#fafafa; padding:2rem; border-radius:12px; border-top:6px solid var(--uci-red); opacity:0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .card.visible { opacity:1; transform: translateY(0); }
     .card h3 { margin-top:0; }
     table { width:100%; border-collapse:collapse; }
     table th, table td { padding:1rem; border-bottom:1px solid #ddd; text-align:left; }
@@ -75,19 +75,27 @@
     <h2>Classement exemple (démo)</h2>
     <table>
       <thead><tr><th>Position</th><th>Coureur</th><th>Nation</th></tr></thead>
-      <tbody id="classement-body"></tbody>
+      <tbody>
+        <tr><td>1</td><td>Mathieu van der Poel</td><td>Pays-Bas</td></tr>
+        <tr><td>2</td><td>Wout van Aert</td><td>Belgique</td></tr>
+        <tr><td>3</td><td>Tom Pidcock</td><td>Royaume-Uni</td></tr>
+      </tbody>
     </table>
   </section>
 
   <section id="coureurs">
     <h2>Coureurs emblématiques</h2>
-    <div class="grid" id="coureurs-list"></div>
+    <div class="grid">
+      <div class="card"><h3>Wout van Aert</h3><p>Puissance et polyvalence.</p></div>
+      <div class="card"><h3>Mathieu van der Poel</h3><p>Référence mondiale du cyclocross moderne.</p></div>
+      <div class="card"><h3>Fem van Empel</h3><p>Dominatrice chez les femmes.</p></div>
+    </div>
   </section>
 
   <section id="actus">
     <h2>Actualités du cyclocross</h2>
     <div id="news" class="grid"><p>Chargement des actualités…</p></div>
-    <p><em>Actualités mises à jour automatiquement toutes les 5 minutes via proxy sécurisé.</em></p>
+    <p><em>Actualités mises à jour automatiquement toutes les 5 minutes.</em></p>
   </section>
 
   <section id="portfolio">
@@ -117,17 +125,13 @@
 </footer>
 
 <script>
-// ==========================
-// Google Analytics
-// ==========================
+// ========== Google Analytics ==========
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);} 
 gtag('js', new Date());
 gtag('config', 'G-P5QXS4MW1L');
 
-// ==========================
-// Dark Mode
-// ==========================
+// ========== Dark Mode ==========
 const btn = document.getElementById('toggleTheme');
 if (btn) {
   btn.onclick = () => {
@@ -137,110 +141,69 @@ if (btn) {
   if (localStorage.getItem('theme') === 'dark') document.body.classList.add('dark');
 }
 
-// ==========================
-// Compteur global de vues
-// ==========================
+// ========== Compteur de vues ==========
 (function(){
-  const el = document.getElementById('views');
-  if(!el) return;
-  fetch('https://api.countapi.xyz/hit/meddournoa-cyclocross/site')
+  const el = document.getElementById("views");
+  if (!el) return;
+  fetch("https://api.countapi.xyz/hit/meddournoa-cyclocross/site")
     .then(res => res.json())
-    .then(data => { el.textContent = data.value; })
-    .catch(()=>{ el.textContent = 'indisponible'; });
+    .then(data => el.textContent = data.value)
+    .catch(() => el.textContent = "indisponible");
 })();
 
-// ==========================
-// Mini classement dynamique
-// ==========================
-const classement = [
-  {position:1, nom:'Mathieu van der Poel', nation:'Pays-Bas'},
-  {position:2, nom:'Wout van Aert', nation:'Belgique'},
-  {position:3, nom:'Tom Pidcock', nation:'Royaume-Uni'}
-];
-const tbody = document.getElementById('classement-body');
-classement.forEach(c => {
-  const tr = document.createElement('tr');
-  tr.innerHTML = `<td>${c.position}</td><td>${c.nom}</td><td>${c.nation}</td>`;
-  tbody.appendChild(tr);
-});
-
-// ==========================
-// Coureurs dynamiques
-// ==========================
-const coureurs = [
-  {nom:'Wout van Aert', desc:'Puissance et polyvalence.'},
-  {nom:'Mathieu van der Poel', desc:'Référence mondiale du cyclocross moderne.'},
-  {nom:'Fem van Empel', desc:'Dominatrice chez les femmes.'}
-];
-const coureursContainer = document.getElementById('coureurs-list');
-coureurs.forEach(c => {
-  const div = document.createElement('div');
-  div.className='card';
-  div.innerHTML=`<h3>${c.nom}</h3><p>${c.desc}</p>`;
-  coureursContainer.appendChild(div);
-});
-
-// ==========================
-// Actualités RSS automatiques
-// ==========================
+// ========== Actualités via RSS2JSON ==========
 (function(){
-  const cacheKey='rssCache';
-  const cacheTime=300000; // 5 minutes
-  const proxy='https://api.allorigins.win/get?url=';
-  const rss='https://www.cyclingnews.com/rss/news/';
+  const apiKey = "qndxmohesay06tyt3d00hxu58fv20r4lxkheeuod"; // Remplacer par ta clé RSS2JSON
+  const rssUrl = "https://www.cyclingnews.com/rss/news/";
+  const cacheKey = "rssCache";
+  const cacheTime = 300000; // 5 min
 
-  function fetchNews(){
-    fetch(proxy + encodeURIComponent(rss))
-      .then(r=>r.json())
-      .then(d=>{
-        const parser=new DOMParser();
-        const xml=parser.parseFromString(d.contents,'text/xml');
-        const items=Array.from(xml.querySelectorAll('item'))
-          .filter(i => i.querySelector('title')?.textContent.toLowerCase().includes('cross'))
-          .slice(0,6)
-          .map(i=>({
-            title:i.querySelector('title')?.textContent || '',
-            link:i.querySelector('link')?.textContent || '',
-            description:i.querySelector('description')?.textContent || ''
-          }));
+  function fetchNews() {
+    const cached = localStorage.getItem(cacheKey);
+    if(cached) {
+      const obj = JSON.parse(cached);
+      if(Date.now() - obj.time < cacheTime){
+        render(obj.items);
+        return;
+      }
+    }
 
-        const container=document.getElementById('news');
-        container.innerHTML='';
-        if(items.length){
-          items.forEach((i,j)=>{
-            const div=document.createElement('div');
-            div.className='card';
-            div.innerHTML=`<h3>${i.title}</h3><p>${i.description.substring(0,120)}...</p><a href='${i.link}' target='_blank'>Lire</a>`;
-            container.appendChild(div);
-            setTimeout(()=>div.classList.add('visible'), j*200); // animation fade-in
-          });
-          localStorage.setItem(cacheKey, JSON.stringify({time:Date.now(), items}));
-        } else {
-          container.innerHTML='<p>Impossible de charger les actualités.</p>';
-        }
+    fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}&api_key=${apiKey}`)
+      .then(res => res.json())
+      .then(data => {
+        if(!data.items) throw new Error("Aucune actualité trouvée");
+        const items = data.items.filter(i => i.title.toLowerCase().includes("cross")).slice(0,6);
+        localStorage.setItem(cacheKey, JSON.stringify({time:Date.now(), items}));
+        render(items);
       })
-      .catch(()=>{ document.getElementById('news').innerHTML='<p>Impossible de charger les actualités.</p>'; });
+      .catch(() => {
+        const c = document.getElementById('news');
+        if(c) c.innerHTML = '<p>Impossible de charger les actualités.</p>';
+      });
   }
 
-  const cached = localStorage.getItem(cacheKey);
-  if(cached){
-    const obj=JSON.parse(cached);
-    if(Date.now()-obj.time<cacheTime){
-      obj.items.forEach((i,j)=>{
-        const div=document.createElement('div');
-        div.className='card visible';
-        div.innerHTML=`<h3>${i.title}</h3><p>${i.description.substring(0,120)}...</p><a href='${i.link}' target='_blank'>Lire</a>`;
-        document.getElementById('news').appendChild(div);
-      });
-    } else { fetchNews(); }
-  } else { fetchNews(); }
+  function render(items){
+    const container = document.getElementById("news");
+    if(!container) return;
+    container.innerHTML = "";
+    items.forEach((i, idx) => {
+      const div = document.createElement("div");
+      div.className = "card";
+      div.innerHTML = `<h3>${i.title}</h3><p>${i.description.substring(0,120)}...</p><a href="${i.link}" target="_blank">Lire</a>`;
+      container.appendChild(div);
+      setTimeout(() => div.classList.add("visible"), 100*idx); // animation fade-in
+    });
+  }
 
+  fetchNews();
   setInterval(fetchNews, cacheTime);
 })();
 </script>
 
 </body>
 </html>
+
+
 
 
 
