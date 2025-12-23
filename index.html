@@ -141,10 +141,24 @@ if(btn){
 }
 
 // Compteur global de vues
-fetch('https://api.countapi.xyz/hit/meddour-noa-cyclocross/views')
-  .then(r=>r.json())
-  .then(d=>{const el=document.getElementById('views'); if(el) el.textContent=d.value;});
+<script>
+(function(){
+  const el = document.getElementById("views");
+  if(!el) return;
 
+  fetch("https://api.countapi.xyz/hit/meddournoa-cyclocross/site")
+    .then(res => {
+      if(!res.ok) throw new Error("API error");
+      return res.json();
+    })
+    .then(data => {
+      el.textContent = data.value;
+    })
+    .catch(() => {
+      el.textContent = "indisponible";
+    });
+})();
+</script>
 // Actualités RSS automatiques toutes les 5 minutes
 (function(){
   const cacheKey='rssCache', cacheTime=300000; // 5 minutes
@@ -194,6 +208,7 @@ fetch('https://api.countapi.xyz/hit/meddour-noa-cyclocross/views')
 
 </body>
 </html>
+
 
 
 
