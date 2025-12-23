@@ -122,33 +122,42 @@
   <p>© 2025 – Cyclocross UCI</p>
   <p>Créé par MEDDOUR Noa</p>
 </footer>
-
 <script>
+// ==========================
 // Google Analytics
+// ==========================
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);} 
 gtag('js', new Date());
 gtag('config', 'G-P5QXS4MW1L');
 
-// Dark Mode Toggle
-const btn=document.getElementById('toggleTheme');
-if(btn){
-  btn.onclick=()=>{
+// ==========================
+// Dark Mode
+// ==========================
+const btn = document.getElementById('toggleTheme');
+if (btn) {
+  btn.onclick = () => {
     document.body.classList.toggle('dark');
-    localStorage.setItem('theme', document.body.classList.contains('dark')?'dark':'light');
+    localStorage.setItem(
+      'theme',
+      document.body.classList.contains('dark') ? 'dark' : 'light'
+    );
   };
-  if(localStorage.getItem('theme')==='dark') document.body.classList.add('dark');
+  if (localStorage.getItem('theme') === 'dark') {
+    document.body.classList.add('dark');
+  }
 }
 
+// ==========================
 // Compteur global de vues
-<script>
+// ==========================
 (function(){
   const el = document.getElementById("views");
-  if(!el) return;
+  if (!el) return;
 
   fetch("https://api.countapi.xyz/hit/meddournoa-cyclocross/site")
     .then(res => {
-      if(!res.ok) throw new Error("API error");
+      if (!res.ok) throw new Error("API error");
       return res.json();
     })
     .then(data => {
@@ -158,56 +167,61 @@ if(btn){
       el.textContent = "indisponible";
     });
 })();
-</script>
-// Actualités RSS automatiques toutes les 5 minutes
+
+// ==========================
+// Actualités RSS automatiques
+// ==========================
 (function(){
-  const cacheKey='rssCache', cacheTime=300000; // 5 minutes
-  const proxy='https://api.allorigins.win/get?url=';
-  const rss='https://www.cyclingnews.com/rss/news/';
+  const cacheKey = 'rssCache';
+  const cacheTime = 300000; // 5 minutes
+  const proxy = 'https://api.allorigins.win/get?url=';
+  const rss = 'https://www.cyclingnews.com/rss/news/';
 
   function fetchNews(){
     fetch(proxy + encodeURIComponent(rss))
-      .then(r=>r.json())
-      .then(d=>{
-        try {
-          const parser=new DOMParser();
-          const xml=parser.parseFromString(d.contents,'text/xml');
-          const items=Array.from(xml.querySelectorAll('item')).map(i=>({
-            title:i.querySelector('title')?.textContent||'',
-            link:i.querySelector('link')?.textContent||'',
-            description:i.querySelector('description')?.textContent||''
-          })).slice(0,6);
-          if(items.length){
-            localStorage.setItem(cacheKey, JSON.stringify({time:Date.now(), items}));
-            render(items);
-          } else {
-            document.getElementById('news').innerHTML='<p>Impossible de charger les actualités.</p>';
-          }
-        } catch(e){ console.error(e); document.getElementById('news').innerHTML='<p>Impossible de charger les actualités.</p>'; }
+      .then(r => r.json())
+      .then(d => {
+        const parser = new DOMParser();
+        const xml = parser.parseFromString(d.contents, 'text/xml');
+        const items = Array.from(xml.querySelectorAll('item'))
+          .slice(0,6)
+          .map(i => ({
+            title: i.querySelector('title')?.textContent || '',
+            link: i.querySelector('link')?.textContent || '',
+            description: i.querySelector('description')?.textContent || ''
+          }));
+
+        if (!items.length) throw new Error("No news");
+
+        const container = document.getElementById('news');
+        container.innerHTML = '';
+        items.forEach(i => {
+          const div = document.createElement('div');
+          div.className = 'card';
+          div.innerHTML = `
+            <h3>${i.title}</h3>
+            <p>${i.description.substring(0,120)}...</p>
+            <a href="${i.link}" target="_blank">Lire</a>
+          `;
+          container.appendChild(div);
+        });
       })
-      .catch(()=>{ document.getElementById('news').innerHTML='<p>Impossible de charger les actualités.</p>'; });
+      .catch(() => {
+        const c = document.getElementById('news');
+        if (c) c.innerHTML = '<p>Impossible de charger les actualités.</p>';
+      });
   }
 
-  function render(items){
-    const c=document.getElementById('news');
-    if(!c) return;
-    c.innerHTML='';
-    items.forEach(i=>{
-      const div=document.createElement('div');
-      div.className='card';
-      div.innerHTML=`<h3>${i.title}</h3><p>${i.description.substring(0,120)}...</p><a href='${i.link}' target='_blank'>Lire</a>`;
-      c.appendChild(div);
-    });
-  }
-
-  // Charger immédiatement et toutes les 5 minutes
   fetchNews();
   setInterval(fetchNews, cacheTime);
 })();
 </script>
 
+
+
 </body>
 </html>
+
 
 
 
