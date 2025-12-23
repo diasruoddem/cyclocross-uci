@@ -1,376 +1,197 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-<!-- SEO META -->
-<meta name="description" content="Site personnel de MEDDOUR Noa dédié au cyclocross UCI : calendrier, coureurs, compétitions et actualités du cyclocross international.">
-<meta name="keywords" content="cyclocross, UCI, cyclocross UCI, coupe du monde cyclocross, championnat du monde cyclocross, MEDDOUR Noa">
-<meta name="author" content="MEDDOUR Noa">
-
-<title>Cyclocross UCI | MEDDOUR Noa</title>
-<style>
-:root {
---uci-red: #e10600;
---dark: #111;
---light: #f5f5f5;
-}
-
-body {
-margin: 0;
-font-family: "Segoe UI", Arial, sans-serif;
-background: var(--light);
-color: #222;
-line-height: 1.6;
-}
-
-header {
-background: url("https://images.unsplash.com/photo-1541625602330-2277a4c46182") center/cover no-repeat;
-color: white;
-padding: 5rem 2rem;
-text-align: center;
-}
-
-header h1 {
-font-size: 3rem;
-margin-bottom: 0.5rem;
-}
-
-header p {
-font-size: 1.2rem;
-max-width: 700px;
-margin: auto;
-}
-
-nav {
-position: sticky;
-top: 0;
-z-index: 1000;
-background: var(--uci-red);
-display: flex;
-justify-content: center;
-gap: 2rem;
-padding: 1rem;
-}
-
-nav a {
-color: white;
-text-decoration: none;
-font-weight: bold;
-}
-
-nav a:hover {
-text-decoration: underline;
-}
-
-main {
-max-width: 1200px;
-margin: auto;
-padding: 3rem 2rem;
-}
-
-section {
-margin-bottom: 4rem;
-background: white;
-padding: 2.5rem;
-border-radius: 14px;
-box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-}
-
-h2 {
-color: var(--uci-red);
-margin-top: 0;
-font-size: 2rem;
-}
-
-.grid {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-gap: 2rem;
-}
-
-.card {
-background: #fafafa;
-padding: 2rem;
-border-radius: 12px;
-border-top: 6px solid var(--uci-red);
-}
-
-.card h3 {
-margin-top: 0;
-}
-
-table {
-width: 100%;
-border-collapse: collapse;
-}
-
-table th, table td {
-padding: 1rem;
-border-bottom: 1px solid #ddd;
-text-align: left;
-}
-
-table th {
-background: #f0f0f0;
-}
-
-footer {
-background: var(--dark);
-color: white;
-text-align: center;
-padding: 2rem 1rem;
-}
-
-footer p {
-margin: 0.3rem 0;
-}
-
-/* Form styles */
-form label { display:block; }
-input, textarea, button {
-width: 100%;
-max-width: 520px;
-padding: 0.7rem;
-margin-top: 0.3rem;
-border-radius: 6px;
-border: 1px solid #ccc;
-font-family: inherit;
-}
-button {
-background: var(--uci-red);
-color: #fff;
-border: none;
-cursor: pointer;
-margin-top: 0.8rem;
-}
-button:hover { opacity: 0.9; }
-body.dark { background:#0f0f0f; color:#eaeaea; }
-body.dark section { background:#1a1a1a; }
-body.dark nav { background:#8b0000; }
-body.dark .card { background:#222; }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Site personnel de MEDDOUR Noa dédié au cyclocross UCI : calendrier, coureurs, compétitions et actualités du cyclocross international.">
+  <meta name="keywords" content="cyclocross, UCI, cyclocross UCI, coupe du monde cyclocross, championnat du monde cyclocross, MEDDOUR Noa">
+  <meta name="author" content="MEDDOUR Noa">
+  <title>Cyclocross UCI | MEDDOUR Noa</title>
+  <style>
+    :root { --uci-red:#e10600; --dark:#111; --light:#f5f5f5; }
+    body { margin:0; font-family:Arial,sans-serif; background:var(--light); color:#222; line-height:1.6; }
+    header { background:url('https://images.unsplash.com/photo-1541625602330-2277a4c46182') center/cover no-repeat; color:white; padding:5rem 2rem; text-align:center; }
+    header h1 { font-size:3rem; margin-bottom:0.5rem; }
+    header p { font-size:1.2rem; max-width:700px; margin:auto; }
+    nav { position:sticky; top:0; z-index:1000; background:var(--uci-red); display:flex; justify-content:center; gap:2rem; padding:1rem; }
+    nav a { color:white; text-decoration:none; font-weight:bold; }
+    nav a:hover { text-decoration:underline; }
+    main { max-width:1200px; margin:auto; padding:3rem 2rem; }
+    section { margin-bottom:4rem; background:white; padding:2.5rem; border-radius:14px; box-shadow:0 10px 25px rgba(0,0,0,0.1); }
+    h2 { color:var(--uci-red); margin-top:0; font-size:2rem; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:2rem; }
+    .card { background:#fafafa; padding:2rem; border-radius:12px; border-top:6px solid var(--uci-red); }
+    .card h3 { margin-top:0; }
+    table { width:100%; border-collapse:collapse; }
+    table th, table td { padding:1rem; border-bottom:1px solid #ddd; text-align:left; }
+    table th { background:#f0f0f0; }
+    footer { background:var(--dark); color:white; text-align:center; padding:2rem 1rem; }
+    footer p { margin:0.3rem 0; }
+    form label { display:block; }
+    input, textarea, button { width:100%; max-width:520px; padding:0.7rem; margin-top:0.3rem; border-radius:6px; border:1px solid #ccc; font-family:inherit; }
+    button { background:var(--uci-red); color:#fff; border:none; cursor:pointer; margin-top:0.8rem; }
+    button:hover { opacity:0.9; }
+    body.dark { background:#0f0f0f; color:#eaeaea; }
+    body.dark section { background:#1a1a1a; }
+    body.dark nav { background:#8b0000; }
+    body.dark .card { background:#222; }
+  </style>
 </head>
 <body>
 
 <header>
-<h1>Cyclocross UCI</h1>
-<p>Site personnel de MEDDOUR Noa dédié au cyclocross UCI, aux compétitions internationales et aux meilleurs coureurs mondiaux.</p>
+  <h1>Cyclocross UCI</h1>
+  <p>Site personnel de MEDDOUR Noa dédié au cyclocross UCI, aux compétitions internationales et aux meilleurs coureurs mondiaux.</p>
 </header>
 
 <nav>
-<a href="#presentation">Présentation</a>
-<a href="#calendrier">Calendrier</a>
-<a href="#classements">Classements</a>
-<a href="#coureurs">Coureurs</a>
-<a href="#actus">Actualités</a>
-<a href="#portfolio">Portfolio</a>
-<a href="#contact">Contact</a>
-<button id="toggleTheme" style="margin-left:1rem;">🌙</button>
+  <a href="#presentation">Présentation</a>
+  <a href="#calendrier">Calendrier</a>
+  <a href="#classements">Classements</a>
+  <a href="#coureurs">Coureurs</a>
+  <a href="#actus">Actualités</a>
+  <a href="#portfolio">Portfolio</a>
+  <a href="#contact">Contact</a>
+  <button id="toggleTheme" style="margin-left:1rem;">🌙</button>
 </nav>
 
 <main>
+  <section id="presentation">
+    <h2>Qu’est-ce que le cyclocross UCI ?</h2>
+    <p>Le cyclocross est une discipline du cyclisme reconnue par l’UCI. Elle se pratique principalement en automne et en hiver sur des circuits courts, techniques et exigeants combinant boue, sable, obstacles artificiels et portions à pied.</p>
+  </section>
 
-<section id="presentation">
-<h2>Qu’est-ce que le cyclocross UCI ?</h2>
-<p>
-Le cyclocross est une discipline du cyclisme reconnue par l’Union Cycliste
-Internationale (UCI). Elle se pratique principalement en automne et en hiver
-sur des circuits courts, techniques et exigeants combinant boue, sable,
-obstacles artificiels et portions à pied.
-</p>
-<p>
-Les compétitions UCI regroupent les meilleurs athlètes du monde et offrent un
-spectacle intense où la technique, la puissance et la stratégie sont
-essentielles.
-</p>
-</section>
+  <section id="calendrier">
+    <h2>Calendrier des compétitions</h2>
+    <div class="grid">
+      <div class="card"><h3>Coupe du Monde UCI</h3><p>Série de manches internationales.</p></div>
+      <div class="card"><h3>Championnats d’Europe</h3><p>Épreuve annuelle regroupant les meilleures nations.</p></div>
+      <div class="card"><h3>Championnats du Monde</h3><p>Compétition reine avec le maillot arc-en-ciel.</p></div>
+    </div>
+  </section>
 
-<section id="calendrier">
-<h2>Calendrier des compétitions</h2>
-<div class="grid">
-<div class="card">
-<h3>Coupe du Monde UCI</h3>
-<p>Série de manches internationales tout au long de la saison hivernale.</p>
-</div>
-<div class="card">
-<h3>Championnats d’Europe</h3>
-<p>Épreuve annuelle regroupant les meilleures nations européennes.</p>
-</div>
-<div class="card">
-<h3>Championnats du Monde</h3>
-<p>Compétition reine où le vainqueur porte le maillot arc-en-ciel.</p>
-</div>
-</div>
-</section>
+  <section id="classements">
+    <h2>Classement exemple (démo)</h2>
+    <table>
+      <thead><tr><th>Position</th><th>Coureur</th><th>Nation</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>Mathieu van der Poel</td><td>Pays-Bas</td></tr>
+        <tr><td>2</td><td>Wout van Aert</td><td>Belgique</td></tr>
+        <tr><td>3</td><td>Tom Pidcock</td><td>Royaume-Uni</td></tr>
+      </tbody>
+    </table>
+  </section>
 
-<section id="classements">
-<h2>Classement exemple (démo)</h2>
-<table>
-<thead>
-<tr>
-<th>Position</th>
-<th>Coureur</th>
-<th>Nation</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>Mathieu van der Poel</td>
-<td>Pays-Bas</td>
-</tr>
-<tr>
-<td>2</td>
-<td>Wout van Aert</td>
-<td>Belgique</td>
-</tr>
-<tr>
-<td>3</td>
-<td>Tom Pidcock</td>
-<td>Royaume-Uni</td>
-</tr>
-</tbody>
-</table>
-</section>
+  <section id="coureurs">
+    <h2>Coureurs emblématiques</h2>
+    <div class="grid">
+      <div class="card"><h3>Wout van Aert</h3><p>Puissance et polyvalence.</p></div>
+      <div class="card"><h3>Mathieu van der Poel</h3><p>Référence mondiale du cyclocross moderne.</p></div>
+      <div class="card"><h3>Fem van Empel</h3><p>Dominatrice chez les femmes.</p></div>
+    </div>
+  </section>
 
-<section id="coureurs">
-<h2>Coureurs emblématiques</h2>
-<div class="grid">
-<div class="card">
-<h3>Wout van Aert</h3>
-<p>Puissance, explosivité et polyvalence sur tous les terrains.</p>
-</div>
-<div class="card">
-<h3>Mathieu van der Poel</h3>
-<p>Référence mondiale du cyclocross moderne, multiple champion du monde.</p>
-</div>
-<div class="card">
-<h3>Fem van Empel</h3>
-<p>Dominatrice chez les femmes avec une régularité impressionnante.</p>
-</div>
-</div>
-</section>
+  <section id="actus">
+    <h2>Actualités du cyclocross</h2>
+    <div id="news" class="grid"><p>Chargement des actualités…</p></div>
+    <p><em>Actualités mises à jour automatiquement toutes les 5 minutes via proxy sécurisé.</em></p>
+  </section>
 
-<section id="actus">
-<h2>Actualités du cyclocross (automatique)</h2>
-<div id="news" class="grid">
-<p>Chargement des actualités…</p>
-</div>
-<p><em>Actualités mises à jour automatiquement (RSS).</em></p>
-</section>
+  <section id="portfolio">
+    <h2>Portfolio – MEDDOUR Noa</h2>
+    <div class="grid">
+      <div class="card"><h3>Site Cyclocross UCI</h3><p>HTML, CSS, JavaScript, SEO, API.</p></div>
+      <div class="card"><h3>Compétences</h3><p>HTML • CSS • JS • SEO • GitHub Pages</p></div>
+      <div class="card"><h3>Objectif</h3><p>Développement web et projets sportifs.</p></div>
+    </div>
+  </section>
 
-<section id="portfolio">
-<h2>Portfolio – MEDDOUR Noa</h2>
-<div class="grid">
-<div class="card">
-<h3>Site Cyclocross UCI</h3>
-<p>Projet personnel : HTML, CSS, JavaScript, SEO, API.</p>
-</div>
-<div class="card">
-<h3>Compétences</h3>
-<p>HTML • CSS • JavaScript • SEO • Hébergement GitHub Pages</p>
-</div>
-<div class="card">
-<h3>Objectif</h3>
-<p>Développement web, projets personnels et sportifs.</p>
-</div>
-</div>
-</section>
-
-<section id="contact">
-<h2>À propos & Contact</h2>
-<p>
-Ce site est un <strong>projet personnel</strong> réalisé par <strong>MEDDOUR Noa</strong>
-autour du cyclocross UCI.
-</p>
-
-<!-- Formspree handles submission: no custom JS needed -->
-<form action="https://formspree.io/f/mqezwypg" method="POST">
-<label>
-Nom<br>
-<input type="text" name="name" required>
-</label>
-
-<label>
-Email<br>
-<input type="email" name="email" required>
-</label>
-
-<label>
-Message<br>
-<textarea name="message" rows="5" required></textarea>
-</label>
-
-<button type="submit">Envoyer</button>
-</form>
-
-<p><em>Le message sera envoyé directement par email.</em></p>
-<p><strong>Nombre de vues :</strong> <span id="views">Chargement...</span></p>
-</section>
-
+  <section id="contact">
+    <h2>Contact</h2>
+    <form action="https://formspree.io/f/mqezwypg" method="POST">
+      <label>Nom<br><input type="text" name="name" required></label>
+      <label>Email<br><input type="email" name="email" required></label>
+      <label>Message<br><textarea name="message" rows="5" required></textarea></label>
+      <button type="submit">Envoyer</button>
+    </form>
+    <p><strong>Nombre de vues :</strong> <span id="views">Chargement...</span></p>
+  </section>
 </main>
 
 <footer>
-<p>© 2025 – Cyclocross UCI</p>
-<p>Créé par MEDDOUR Noa</p>
+  <p>© 2025 – Cyclocross UCI</p>
+  <p>Créé par MEDDOUR Noa</p>
 </footer>
 
 <script>
-// ===== GOOGLE ANALYTICS (GA4) =====
-// Remplace G-XXXXXXXXXX par ton ID GA4
+// Google Analytics
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);} 
 gtag('js', new Date());
 gtag('config', 'G-XXXXXXXXXX');
 
-// ===== THEME SOMBRE =====
-const btn = document.getElementById('toggleTheme');
-if (btn) {
-btn.onclick = () => {
-document.body.classList.toggle('dark');
-localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
-};
-if (localStorage.getItem('theme') === 'dark') document.body.classList.add('dark');
+// Dark Mode Toggle
+const btn=document.getElementById('toggleTheme');
+if(btn){
+  btn.onclick=()=>{
+    document.body.classList.toggle('dark');
+    localStorage.setItem('theme', document.body.classList.contains('dark')?'dark':'light');
+  };
+  if(localStorage.getItem('theme')==='dark') document.body.classList.add('dark');
 }
 
-// ===== COMPTEUR DE VUES GLOBAL =====
-(function () {
+// Compteur global de vues
 fetch('https://api.countapi.xyz/hit/meddour-noa-cyclocross/views')
-.then(r=>r.json())
-.then(d=>{ const el=document.getElementById('views'); if(el) el.textContent=d.value; });
-})();
+  .then(r=>r.json())
+  .then(d=>{const el=document.getElementById('views'); if(el) el.textContent=d.value;});
 
-// ===== ACTUALITÉS RSS AVEC CACHE =====
-(function () {
-const cacheKey='rssCache';
-const cacheTime=3600000; // 1h
-const cached=localStorage.getItem(cacheKey);
-if (cached) {
-const obj=JSON.parse(cached);
-if (Date.now()-obj.time < cacheTime) {
-render(obj.items); return;
-}
-}
-const rss='https://www.cyclingnews.com/rss/news/';
-fetch('https://api.rss2json.com/v1/api.json?rss_url='+encodeURIComponent(rss))
-.then(r=>r.json())
-.then(d=>{
-const items=d.items.filter(i=>i.title.toLowerCase().includes('cross')).slice(0,6);
-localStorage.setItem(cacheKey, JSON.stringify({time:Date.now(), items}));
-render(items);
-});
-function render(items){
-const c=document.getElementById('news'); c.innerHTML='';
-items.forEach(i=>{
-const div=document.createElement('div'); div.className='card';
-div.innerHTML=`<h3>${i.title}</h3><p>${i.description.substring(0,120)}...</p><a href='${i.link}' target='_blank'>Lire</a>`;
-c.appendChild(div);
-});
-}
+// Actualités RSS automatiques toutes les 5 minutes
+(function(){
+  const cacheKey='rssCache', cacheTime=300000; // 5 minutes
+  const proxy='https://api.allorigins.win/get?url=';
+  const rss='https://www.cyclingnews.com/rss/news/';
+
+  function fetchNews(){
+    fetch(proxy + encodeURIComponent(rss))
+      .then(r=>r.json())
+      .then(d=>{
+        try {
+          const parser=new DOMParser();
+          const xml=parser.parseFromString(d.contents,'text/xml');
+          const items=Array.from(xml.querySelectorAll('item')).map(i=>({
+            title:i.querySelector('title')?.textContent||'',
+            link:i.querySelector('link')?.textContent||'',
+            description:i.querySelector('description')?.textContent||''
+          })).slice(0,6);
+          if(items.length){
+            localStorage.setItem(cacheKey, JSON.stringify({time:Date.now(), items}));
+            render(items);
+          } else {
+            document.getElementById('news').innerHTML='<p>Impossible de charger les actualités.</p>';
+          }
+        } catch(e){ console.error(e); document.getElementById('news').innerHTML='<p>Impossible de charger les actualités.</p>'; }
+      })
+      .catch(()=>{ document.getElementById('news').innerHTML='<p>Impossible de charger les actualités.</p>'; });
+  }
+
+  function render(items){
+    const c=document.getElementById('news');
+    if(!c) return;
+    c.innerHTML='';
+    items.forEach(i=>{
+      const div=document.createElement('div');
+      div.className='card';
+      div.innerHTML=`<h3>${i.title}</h3><p>${i.description.substring(0,120)}...</p><a href='${i.link}' target='_blank'>Lire</a>`;
+      c.appendChild(div);
+    });
+  }
+
+  // Charger immédiatement et toutes les 5 minutes
+  fetchNews();
+  setInterval(fetchNews, cacheTime);
 })();
 </script>
 
 </body>
 </html>
+
