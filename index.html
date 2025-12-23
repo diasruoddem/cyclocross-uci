@@ -7,16 +7,6 @@
   <meta name="keywords" content="cyclocross, UCI, cyclocross UCI, coupe du monde cyclocross, championnat du monde cyclocross, MEDDOUR Noa">
   <meta name="author" content="MEDDOUR Noa">
   <title>Cyclocross UCI | MEDDOUR Noa</title>
-
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-P5QXS4MW1L"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-P5QXS4MW1L');
-  </script>
-
   <style>
     :root { --uci-red:#e10600; --dark:#111; --light:#f5f5f5; }
     body { margin:0; font-family:Arial,sans-serif; background:var(--light); color:#222; line-height:1.6; }
@@ -48,12 +38,10 @@
   </style>
 </head>
 <body>
-
 <header>
   <h1>Cyclocross UCI</h1>
   <p>Site personnel de MEDDOUR Noa dédié au cyclocross UCI, aux compétitions internationales et aux meilleurs coureurs mondiaux.</p>
 </header>
-
 <nav>
   <a href="#presentation">Présentation</a>
   <a href="#calendrier">Calendrier</a>
@@ -64,13 +52,11 @@
   <a href="#contact">Contact</a>
   <button id="toggleTheme" style="margin-left:1rem;">🌙</button>
 </nav>
-
 <main>
   <section id="presentation">
     <h2>Qu’est-ce que le cyclocross UCI ?</h2>
     <p>Le cyclocross est une discipline du cyclisme reconnue par l’UCI. Elle se pratique principalement en automne et en hiver sur des circuits courts, techniques et exigeants combinant boue, sable, obstacles artificiels et portions à pied.</p>
   </section>
-
   <section id="calendrier">
     <h2>Calendrier des compétitions</h2>
     <div class="grid">
@@ -79,7 +65,6 @@
       <div class="card"><h3>Championnats du Monde</h3><p>Compétition reine avec le maillot arc-en-ciel.</p></div>
     </div>
   </section>
-
   <section id="classements">
     <h2>Classement exemple (démo)</h2>
     <table>
@@ -91,7 +76,6 @@
       </tbody>
     </table>
   </section>
-
   <section id="coureurs">
     <h2>Coureurs emblématiques</h2>
     <div class="grid">
@@ -100,13 +84,11 @@
       <div class="card"><h3>Fem van Empel</h3><p>Dominatrice chez les femmes.</p></div>
     </div>
   </section>
-
   <section id="actus">
     <h2>Actualités du cyclocross</h2>
     <div id="news" class="grid"><p>Chargement des actualités…</p></div>
     <p><em>Actualités mises à jour automatiquement toutes les 5 minutes via proxy sécurisé.</em></p>
   </section>
-
   <section id="portfolio">
     <h2>Portfolio – MEDDOUR Noa</h2>
     <div class="grid">
@@ -115,7 +97,6 @@
       <div class="card"><h3>Objectif</h3><p>Développement web et projets sportifs.</p></div>
     </div>
   </section>
-
   <section id="contact">
     <h2>Contact</h2>
     <form action="https://formspree.io/f/mqezwypg" method="POST">
@@ -127,86 +108,74 @@
     <p><strong>Nombre de vues :</strong> <span id="views">Chargement...</span></p>
   </section>
 </main>
-
 <footer>
   <p>© 2025 – Cyclocross UCI</p>
   <p>Créé par MEDDOUR Noa</p>
 </footer>
-
 <script>
-// ==========================
-// Dark Mode
-// ==========================
+// Google Analytics
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);} 
+gtag('js', new Date());
+gtag('config', 'G-P5QXS4MW1L');
+
+// Dark Mode Toggle
 const btn = document.getElementById('toggleTheme');
 if (btn) {
   btn.onclick = () => {
     document.body.classList.toggle('dark');
-    localStorage.setItem('theme',
-      document.body.classList.contains('dark') ? 'dark' : 'light'
-    );
+    localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
   };
   if (localStorage.getItem('theme') === 'dark') document.body.classList.add('dark');
 }
 
-// ==========================
-// Compteur global de vues
-// ==========================
+// Compteur de vues
 (function(){
   const el = document.getElementById("views");
-  if (!el) return;
-
+  if(!el) return;
   fetch("https://api.countapi.xyz/hit/meddournoa-cyclocross/site")
-    .then(res => { if(!res.ok) throw new Error("API error"); return res.json(); })
+    .then(res => res.json())
     .then(data => { el.textContent = data.value; })
-    .catch(() => { el.textContent = "indisponible"; });
+    .catch(()=>{ el.textContent = "indisponible"; });
 })();
 
-// ==========================
-// Actualités RSS automatiques
-// ==========================
+// Actualités RSS
 (function(){
-  const cacheKey = 'rssCache';
-  const cacheTime = 300000; // 5 minutes
-  const proxy = 'https://api.allorigins.win/get?url=';
-  const rss = 'https://www.cyclingnews.com/rss/news/';
+  const cacheKey='rssCache', cacheTime=300000;
+  const proxy='https://api.allorigins.win/get?url=';
+  const rss='https://www.cyclingnews.com/rss/news/';
 
   function fetchNews(){
     fetch(proxy + encodeURIComponent(rss))
       .then(r => r.json())
       .then(d => {
-        if (!d.contents) throw new Error("Flux RSS vide");
         const parser = new DOMParser();
-        const xml = parser.parseFromString(d.contents, 'text/xml');
-        const items = Array.from(xml.querySelectorAll('item'))
-          .slice(0,6)
-          .map(i => ({
-            title: i.querySelector('title')?.textContent || '',
-            link: i.querySelector('link')?.textContent || '',
-            description: i.querySelector('description')?.textContent || ''
-          }));
-        if (!items.length) throw new Error("Pas d'actualités");
-        const container = document.getElementById('news');
-        container.innerHTML = '';
-        items.forEach(i => {
-          const div = document.createElement('div');
-          div.className = 'card';
-          div.innerHTML = `<h3>${i.title}</h3><p>${i.description.substring(0,120)}...</p><a href="${i.link}" target="_blank">Lire</a>`;
+        const xml = parser.parseFromString(d.contents,'text/xml');
+        const items = Array.from(xml.querySelectorAll('item')).slice(0,6).map(i=>({
+          title: i.querySelector('title')?.textContent||'',
+          link: i.querySelector('link')?.textContent||'',
+          description: i.querySelector('description')?.textContent||''
+        }));
+        const container=document.getElementById('news');
+        container.innerHTML='';
+        items.forEach(i=>{
+          const div=document.createElement('div');
+          div.className='card';
+          div.innerHTML=`<h3>${i.title}</h3><p>${i.description.substring(0,120)}...</p><a href='${i.link}' target='_blank'>Lire</a>`;
           container.appendChild(div);
         });
       })
-      .catch(() => {
-        const c = document.getElementById('news');
-        if (c) c.innerHTML = '<p>Impossible de charger les actualités.</p>';
-      });
+      .catch(()=>{ document.getElementById('news').innerHTML='<p>Impossible de charger les actualités.</p>'; });
   }
 
   fetchNews();
   setInterval(fetchNews, cacheTime);
 })();
 </script>
-
 </body>
 </html>
+
+
 
 
 
