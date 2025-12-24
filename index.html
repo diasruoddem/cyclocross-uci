@@ -3,22 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Site personnel de MEDDOUR Noa dédié au cyclocross UCI : calendrier, coureurs, compétitions et actualités du cyclocross international.">
 <title>Cyclocross UCI | MEDDOUR Noa</title>
 <style>
 :root { --uci-red:#e10600; --dark:#111; --light:#f5f5f5; }
-body { margin:0; font-family:Arial,sans-serif; background:var(--light); color:#222; line-height:1.6; transition:background 0.5s,color 0.5s; }
-header { background-size:cover; background-position:center; color:white; padding:5rem 2rem; text-align:center; transition:background 1s; }
+body { margin:0; font-family:Arial,sans-serif; background:var(--light); color:#222; line-height:1.6; transition: background 0.5s, color 0.5s; }
+header { background-size:cover; background-position:center; color:white; padding:5rem 2rem; text-align:center; transition: background-image 1s ease-in-out; }
 header h1 { font-size:3rem; margin-bottom:0.5rem; }
 header p { font-size:1.2rem; max-width:700px; margin:auto; }
 nav { position:sticky; top:0; z-index:1000; background:var(--uci-red); display:flex; justify-content:center; gap:2rem; padding:1rem; }
 nav a { color:white; text-decoration:none; font-weight:bold; }
 nav a:hover { text-decoration:underline; }
 main { max-width:1200px; margin:auto; padding:3rem 2rem; }
-section { margin-bottom:4rem; background:white; padding:2.5rem; border-radius:14px; box-shadow:0 10px 25px rgba(0,0,0,0.1); transition:background 0.5s; }
+section { margin-bottom:4rem; background:white; padding:2.5rem; border-radius:14px; box-shadow:0 10px 25px rgba(0,0,0,0.1); transition: background 0.5s, color 0.5s; }
 h2 { color:var(--uci-red); margin-top:0; font-size:2rem; }
 .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:2rem; }
-.card { background:#fafafa; padding:2rem; border-radius:12px; border-top:6px solid var(--uci-red); transition:background 0.5s; }
+.card { background:#fafafa; padding:2rem; border-radius:12px; border-top:6px solid var(--uci-red); }
 .card h3 { margin-top:0; }
 table { width:100%; border-collapse:collapse; }
 table th, table td { padding:1rem; border-bottom:1px solid #ddd; text-align:left; }
@@ -48,69 +47,66 @@ body.dark .card { background:#222; }
   <a href="#classements">Classements</a>
   <a href="#coureurs">Coureurs</a>
   <a href="#actus">Actualités</a>
+  <a href="#portfolio">Portfolio</a>
   <a href="#contact">Contact</a>
-  <button id="toggleTheme">🌙</button>
+  <button id="toggleTheme" style="margin-left:1rem;">🌙</button>
 </nav>
 
 <main>
-<section id="presentation">
-<h2>Qu’est-ce que le cyclocross UCI ?</h2>
-<p>Le cyclocross est une discipline du cyclisme reconnue par l’UCI. Elle se pratique principalement en automne et en hiver sur des circuits courts, techniques et exigeants combinant boue, sable, obstacles artificiels et portions à pied.</p>
-</section>
+  <section id="presentation">
+    <h2>Qu’est-ce que le cyclocross UCI ?</h2>
+    <p>Le cyclocross est une discipline du cyclisme reconnue par l’UCI. Elle se pratique principalement en automne et en hiver sur des circuits courts et techniques.</p>
+  </section>
 
-<section id="calendrier">
-<h2>Calendrier des compétitions</h2>
-<div class="grid">
-  <div class="card"><h3>Coupe du Monde UCI</h3><p>Série de manches internationales.</p></div>
-  <div class="card"><h3>Championnats d’Europe</h3><p>Épreuve annuelle regroupant les meilleures nations.</p></div>
-  <div class="card"><h3>Championnats du Monde</h3><p>Compétition reine avec le maillot arc-en-ciel.</p></div>
-</div>
-</section>
+  <section id="calendrier">
+    <h2>Calendrier des compétitions</h2>
+    <div class="grid" id="calendar"></div>
+  </section>
 
-<section id="classements">
-<h2>Classements UCI</h2>
-<h3>Hommes</h3>
-<table id="classement-hommes">
-<thead><tr><th>Position</th><th>Coureur</th><th>Nation</th></tr></thead>
-<tbody></tbody>
-</table>
-<h3>Femmes</h3>
-<table id="classement-femmes">
-<thead><tr><th>Position</th><th>Coureur</th><th>Nation</th></tr></thead>
-<tbody></tbody>
-</table>
-</section>
+  <section id="classements">
+    <h2>Classements UCI</h2>
+    <h3>Hommes</h3>
+    <table id="rank-hommes">
+      <thead><tr><th>Position</th><th>Coureur</th><th>Nation</th></tr></thead><tbody></tbody>
+    </table>
+    <h3>Femmes</h3>
+    <table id="rank-femmes">
+      <thead><tr><th>Position</th><th>Coureur</th><th>Nation</th></tr></thead><tbody></tbody>
+    </table>
+  </section>
 
-<section id="coureurs">
-<h2>Coureurs emblématiques</h2>
-<div class="grid">
-  <div class="card"><h3>Wout van Aert</h3><p>Puissance et polyvalence.</p></div>
-  <div class="card"><h3>Mathieu van der Poel</h3><p>Référence mondiale du cyclocross moderne.</p></div>
-  <div class="card"><h3>Fem van Empel</h3><p>Dominatrice chez les femmes.</p></div>
-</div>
-</section>
+  <section id="coureurs">
+    <h2>Coureurs emblématiques</h2>
+    <div class="grid" id="stars"></div>
+  </section>
 
-<section id="actus">
-<h2>Actualités du cyclocross</h2>
-<div id="news" class="grid"><p>Chargement des actualités…</p></div>
-<p><em>Actualités mises à jour automatiquement toutes les minutes.</em></p>
-</section>
+  <section id="actus">
+    <h2>Actualités du cyclocross</h2>
+    <div id="news" class="grid"></div>
+  </section>
 
-<section id="contact">
-<h2>Contact</h2>
-<form action="https://formspree.io/f/mqezwypg" method="POST">
-<label>Nom<br><input type="text" name="name" required></label>
-<label>Email<br><input type="email" name="email" required></label>
-<label>Message<br><textarea name="message" rows="5" required></textarea></label>
-<button type="submit">Envoyer</button>
-</form>
-<p><strong>Nombre de vues :</strong> <span id="views">Chargement...</span></p>
-</section>
+  <section id="portfolio">
+    <h2>Portfolio – MEDDOUR Noa</h2>
+    <div class="grid">
+      <div class="card"><h3>Site Cyclocross UCI</h3><p>HTML, CSS, JS, SEO, GitHub Pages</p></div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <form action="https://formspree.io/f/mqezwypg" method="POST">
+      <label>Nom<br><input type="text" name="name" required></label>
+      <label>Email<br><input type="email" name="email" required></label>
+      <label>Message<br><textarea name="message" rows="5" required></textarea></label>
+      <button type="submit">Envoyer</button>
+    </form>
+    <p><strong>Nombre de vues :</strong> <span id="views">0</span></p>
+  </section>
 </main>
 
 <footer>
-<p>© 2025 – Cyclocross UCI</p>
-<p>Créé par MEDDOUR Noa</p>
+  <p>© 2025 – Cyclocross UCI</p>
+  <p>Créé par MEDDOUR Noa</p>
 </footer>
 
 <script>
@@ -118,85 +114,106 @@ body.dark .card { background:#222; }
 // Dark Mode
 // ==========================
 const btn = document.getElementById('toggleTheme');
-if(btn){
+if (btn) {
   btn.onclick = () => {
     document.body.classList.toggle('dark');
     localStorage.setItem('theme', document.body.classList.contains('dark')?'dark':'light');
   };
-  if(localStorage.getItem('theme')==='dark') document.body.classList.add('dark');
+  if (localStorage.getItem('theme')==='dark') document.body.classList.add('dark');
 }
 
 // ==========================
-// Compteur global de vues
+// Compteur de vues local
 // ==========================
-(function(){
-  const el = document.getElementById("views");
-  if(!el) return;
-  fetch("https://api.countapi.xyz/hit/meddournoa-cyclocross/site")
-    .then(r=>r.json()).then(d=>el.textContent=d.value).catch(()=>el.textContent="indisponible");
-})();
-
-// ==========================
-// Actualités depuis JSON
-// ==========================
-(function(){
-  const container = document.getElementById('news');
-  function loadNews(){
-    fetch('actus.json')
-      .then(res=>res.json())
-      .then(items=>{
-        container.innerHTML='';
-        items.forEach(i=>{
-          const div=document.createElement('div');
-          div.className='card';
-          div.innerHTML=`<h3>${i.title}</h3><p>${i.description.substring(0,120)}...</p><a href="${i.link}" target="_blank">Lire</a>`;
-          container.appendChild(div);
-        });
-      })
-      .catch(()=>container.innerHTML='<p>Impossible de charger les actualités.</p>');
-  }
-  loadNews();
-  setInterval(loadNews,60000);
-})();
-
-// ==========================
-// Classements UCI depuis JSON
-// ==========================
-(function(){
-  fetch('classements.json')
-    .then(r=>r.json())
-    .then(d=>{
-      const hbody=document.querySelector('#classement-hommes tbody');
-      const fbody=document.querySelector('#classement-femmes tbody');
-      d.hommes.forEach(c=>hbody.innerHTML+=`<tr><td>${c.position}</td><td>${c.name}</td><td>${c.nation}</td></tr>`);
-      d.femmes.forEach(c=>fbody.innerHTML+=`<tr><td>${c.position}</td><td>${c.name}</td><td>${c.nation}</td></tr>`);
-    });
-})();
+let views = parseInt(localStorage.getItem('views')||0);
+views++; 
+localStorage.setItem('views', views);
+document.getElementById('views').textContent = views;
 
 // ==========================
 // Images de fond changeantes
 // ==========================
-(function(){
-  const header=document.getElementById('header');
-  const images=[
-    'https://images.unsplash.com/photo-1',
-    'https://images.unsplash.com/photo-2',
-    'https://images.unsplash.com/photo-3',
-    'https://images.unsplash.com/photo-4',
-    'https://images.unsplash.com/photo-5',
-    'https://images.unsplash.com/photo-6',
-    'https://images.unsplash.com/photo-7',
-    'https://images.unsplash.com/photo-8',
-    'https://images.unsplash.com/photo-9',
-    'https://images.unsplash.com/photo-10'
-  ];
-  let i=0;
-  setInterval(()=>{
-    header.style.backgroundImage=`url(${images[i]})`;
-    i=(i+1)%images.length;
-  },30000);
-})();
-</script>
+const images = [
+"https://images.unsplash.com/photo-1505751172876-fa1923c5c528",
+"https://images.unsplash.com/photo-1519337265831-281ec6cc8514",
+"https://images.unsplash.com/photo-1518655048521-f130df041f66",
+"https://images.unsplash.com/photo-1517649763962-0c623066013b",
+"https://images.unsplash.com/photo-1521412644187-c49fa049e84d",
+"https://images.unsplash.com/photo-1529429616605-993a6f4f42bb",
+"https://images.unsplash.com/photo-1544551763-411c22a2d0a6",
+"https://images.unsplash.com/photo-1513483460600-4e01d1eac003",
+"https://images.unsplash.com/photo-1531106036530-9fbd57a7db5f",
+"https://images.unsplash.com/photo-1543791181-62fc1a244ec7"
+];
+let idx = 0;
+const header = document.getElementById('header');
+setInterval(() => {
+  header.style.backgroundImage = `url('${images[idx]}')`;
+  idx = (idx+1)%images.length;
+}, 10000);
 
+// ==========================
+// Classements UCI (depuis JSON)
+// ==========================
+const classements = {
+  "hommes":[
+    {"position":1,"nom":"Mathieu van der Poel","nation":"Pays-Bas"},
+    {"position":2,"nom":"Wout van Aert","nation":"Belgique"},
+    {"position":3,"nom":"Tom Pidcock","nation":"Royaume-Uni"}
+  ],
+  "femmes":[
+    {"position":1,"nom":"Fem van Empel","nation":"Pays-Bas"},
+    {"position":2,"nom":"Lucinda Brand","nation":"Pays-Bas"},
+    {"position":3,"nom":"Shirin van Anrooij","nation":"Pays-Bas"}
+  ]
+};
+function renderClassements(){
+  const h = document.querySelector('#rank-hommes tbody');
+  h.innerHTML = '';
+  classements.hommes.forEach(c=>{h.innerHTML += `<tr><td>${c.position}</td><td>${c.nom}</td><td>${c.nation}</td>`;});
+  const f = document.querySelector('#rank-femmes tbody');
+  f.innerHTML = '';
+  classements.femmes.forEach(c=>{f.innerHTML += `<tr><td>${c.position}</td><td>${c.nom}</td><td>${c.nation}</td>`;});
+}
+renderClassements();
+
+// ==========================
+// Coureurs emblématiques
+// ==========================
+const stars = [
+  {"nom":"Mathieu van der Poel","desc":"Référence mondiale du cyclocross moderne"},
+  {"nom":"Wout van Aert","desc":"Puissance et polyvalence"},
+  {"nom":"Fem van Empel","desc":"Dominatrice chez les femmes"}
+];
+const containerStars = document.getElementById('stars');
+stars.forEach(c=>{
+  const div = document.createElement('div');
+  div.className='card';
+  div.innerHTML=`<h3>${c.nom}</h3><p>${c.desc}</p>`;
+  containerStars.appendChild(div);
+});
+
+// ==========================
+// Actualités (depuis JSON)
+// ==========================
+const news = [
+  {"title":"Mathieu van der Poel gagne à Namur","link":"#","description":"Résumé de la course à Namur..."},
+  {"title":"Fem van Empel remporte le championnat","link":"#","description":"Résumé de la course féminine..."},
+  {"title":"Nouvelle étape de la Coupe du Monde","link":"#","description":"Résumé étape Coupe du Monde..."}
+];
+function renderNews(){
+  const c = document.getElementById('news');
+  c.innerHTML = '';
+  news.forEach(n=>{
+    const div = document.createElement('div');
+    div.className='card';
+    div.innerHTML=`<h3>${n.title}</h3><p>${n.description}</p><a href="${n.link}" target="_blank">Lire</a>`;
+    c.appendChild(div);
+  });
+}
+renderNews();
+setInterval(renderNews,60000); // mise à jour toutes les 1 minute
+
+</script>
 </body>
 </html>
