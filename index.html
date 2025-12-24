@@ -1,111 +1,105 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cyclocross UCI | MEDDOUR Noa</title>
-  <meta name="description" content="Site personnel de MEDDOUR Noa dédié au cyclocross UCI">
-  <style>
-    body{margin:0;font-family:Arial,sans-serif;background:#f5f5f5;color:#222}
-    header{min-height:60vh;color:#fff;display:flex;align-items:center;justify-content:center;text-align:center;background-size:cover;background-position:center;transition:background-image 1s ease-in-out}
-    nav{background:#e10600;padding:1rem;text-align:center}
-    nav a{color:#fff;margin:0 1rem;text-decoration:none;font-weight:bold}
-    section{max-width:1100px;margin:3rem auto;padding:2rem;background:#fff;border-radius:12px}
-    h2{color:#e10600}
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem}
-    .card{background:#fafafa;padding:1.5rem;border-radius:10px;border-top:5px solid #e10600}
-    footer{background:#111;color:#fff;text-align:center;padding:2rem}
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cyclocross UCI | MEDDOUR Noa</title>
+<meta name="description" content="Site personnel dédié au cyclocross UCI : classements, coureurs et actualités.">
+
+<style>
+:root { --uci:#e10600; }
+body{margin:0;font-family:Arial;background:#f5f5f5;color:#222;transition:.3s}
+header{color:#fff;padding:5rem 2rem;text-align:center;background-size:cover;background-position:center}
+nav{background:var(--uci);padding:1rem;display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap}
+nav a, nav button{color:#fff;font-weight:bold;background:none;border:none;cursor:pointer}
+section{max-width:1100px;margin:3rem auto;background:#fff;padding:2rem;border-radius:12px}
+h2{color:var(--uci)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem}
+.card{background:#fafafa;padding:1.5rem;border-left:5px solid var(--uci)}
+footer{background:#111;color:#fff;text-align:center;padding:2rem}
+.dark{background:#111;color:#eee}
+.dark section{background:#1a1a1a}
+.dark nav{background:#8b0000}
+</style>
 </head>
+
 <body>
 
 <header id="hero">
-  <div>
-    <h1>Cyclocross UCI</h1>
-    <p>Projet personnel – MEDDOUR Noa</p>
-  </div>
+<h1>Cyclocross UCI</h1>
+<p>Site personnel de MEDDOUR Noa</p>
 </header>
 
 <nav>
-  <a href="#presentation">Présentation</a>
-  <a href="#classements">Classements</a>
-  <a href="#actus">Actualités</a>
-  <a href="#contact">Contact</a>
+<a href="#classements">Classements</a>
+<a href="#actus">Actualités</a>
+<a href="#portfolio">Portfolio</a>
+<button id="theme">🌙</button>
 </nav>
 
-<section id="presentation">
-  <h2>Présentation</h2>
-  <p>Le cyclocross est une discipline du cyclisme reconnue par l'UCI. Ce site est un projet personnel réalisé par MEDDOUR Noa.</p>
-</section>
-
 <section id="classements">
-  <h2>Classements UCI (exemple fiable)</h2>
-  <div class="grid">
-    <div class="card">
-      <h3>Hommes</h3>
-      <ol>
-        <li>Mathieu van der Poel</li>
-        <li>Wout van Aert</li>
-        <li>Tom Pidcock</li>
-      </ol>
-    </div>
-    <div class="card">
-      <h3>Femmes</h3>
-      <ol>
-        <li>Fem van Empel</li>
-        <li>Puck Pieterse</li>
-        <li>Lucinda Brand</li>
-      </ol>
-    </div>
-  </div>
+<h2>Classements UCI – Hommes</h2>
+<table>
+<tr><th>Pos</th><th>Coureur</th><th>Pays</th></tr>
+<tr><td>1</td><td>Mathieu van der Poel</td><td>Pays-Bas</td></tr>
+<tr><td>2</td><td>Wout van Aert</td><td>Belgique</td></tr>
+<tr><td>3</td><td>Tom Pidcock</td><td>Royaume-Uni</td></tr>
+</table>
+
+<h2>Classements UCI – Femmes</h2>
+<table>
+<tr><th>Pos</th><th>Coureuse</th><th>Pays</th></tr>
+<tr><td>1</td><td>Fem van Empel</td><td>Pays-Bas</td></tr>
+<tr><td>2</td><td>Puck Pieterse</td><td>Pays-Bas</td></tr>
+<tr><td>3</td><td>Lucinda Brand</td><td>Pays-Bas</td></tr>
+</table>
 </section>
 
 <section id="actus">
-  <h2>Actualités cyclocross</h2>
-  <div class="grid" id="news">
-    <div class="card"><h3>Saison de cyclocross</h3><p>Les principales épreuves UCI se déroulent de septembre à février.</p></div>
-    <div class="card"><h3>Championnats du monde</h3><p>Le maillot arc-en-ciel est l'objectif ultime des coureurs.</p></div>
-    <div class="card"><h3>Coupe du monde UCI</h3><p>Une série de manches sur les circuits les plus exigeants.</p></div>
-  </div>
-  <p><em>Actualités stables (version GitHub Pages sans erreurs CORS).</em></p>
+<h2>Actualités cyclocross</h2>
+<div class="grid">
+<div class="card"><h3>Coupe du Monde UCI</h3><p>Les manches hivernales débutent en octobre.</p></div>
+<div class="card"><h3>Championnats du Monde</h3><p>Objectif arc-en-ciel pour les meilleurs coureurs.</p></div>
+<div class="card"><h3>Nouvelle génération</h3><p>Les jeunes talents dominent les catégories élites.</p></div>
+</div>
 </section>
 
-<section id="contact">
-  <h2>Contact</h2>
-  <form action="https://formspree.io/f/mqezwypg" method="POST">
-    <input type="text" name="name" placeholder="Nom" required><br><br>
-    <input type="email" name="email" placeholder="Email" required><br><br>
-    <textarea name="message" placeholder="Message" required></textarea><br><br>
-    <button type="submit">Envoyer</button>
-  </form>
-  <p><strong>Nombre de vues :</strong> <span id="views">—</span></p>
+<section id="portfolio">
+<h2>Portfolio</h2>
+<p><strong>Projet :</strong> Site Cyclocross UCI</p>
+<p><strong>Technologies :</strong> HTML • CSS • JavaScript</p>
+<p><strong>Visites :</strong> <span id="views"></span></p>
 </section>
 
 <footer>
-  <p>© 2025 – MEDDOUR Noa</p>
+<p>© 2025 – MEDDOUR Noa</p>
 </footer>
 
 <script>
-/* Rotation images de fond – 100% fonctionnel */
+// Images dynamiques
 const images=[
-  'https://images.unsplash.com/photo-1541625602330-2277a4c46182',
-  'https://images.unsplash.com/photo-1508609349937-5ec4ae374ebf',
-  'https://images.unsplash.com/photo-1600185365483-26d7fbbefb28'
+'https://images.unsplash.com/photo-1541625602330-2277a4c46182',
+'https://images.unsplash.com/photo-1508609349937-5ec4ae374ebf',
+'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb'
 ];
 let i=0;
-const hero=document.getElementById('hero');
-hero.style.backgroundImage=`url(${images[0]})`;
 setInterval(()=>{
-  i=(i+1)%images.length;
-  hero.style.backgroundImage=`url(${images[i]})`;
-},15000);
+document.getElementById('hero').style.backgroundImage=`url(${images[i]})`;
+i=(i+1)%images.length;
+},8000);
 
-/* Compteur de vues LOCAL (fallback GitHub Pages) */
-const vEl=document.getElementById('views');
+// Dark mode
+document.getElementById('theme').onclick=()=>{
+document.body.classList.toggle('dark');
+localStorage.setItem('dark',document.body.classList.contains('dark'));
+};
+if(localStorage.getItem('dark')==='true')document.body.classList.add('dark');
+
+// Compteur local
 let views=localStorage.getItem('views')||0;
 views++;
 localStorage.setItem('views',views);
-vEl.textContent=views;
+document.getElementById('views').textContent=views;
 </script>
 
 </body>
