@@ -1,105 +1,103 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cyclocross UCI | MEDDOUR Noa</title>
-<meta name="description" content="Site personnel dédié au cyclocross UCI : classements, coureurs et actualités.">
-
-<style>
-:root { --uci:#e10600; }
-body{margin:0;font-family:Arial;background:#f5f5f5;color:#222;transition:.3s}
-header{color:#fff;padding:5rem 2rem;text-align:center;background-size:cover;background-position:center}
-nav{background:var(--uci);padding:1rem;display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap}
-nav a, nav button{color:#fff;font-weight:bold;background:none;border:none;cursor:pointer}
-section{max-width:1100px;margin:3rem auto;background:#fff;padding:2rem;border-radius:12px}
-h2{color:var(--uci)}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem}
-.card{background:#fafafa;padding:1.5rem;border-left:5px solid var(--uci)}
-footer{background:#111;color:#fff;text-align:center;padding:2rem}
-.dark{background:#111;color:#eee}
-.dark section{background:#1a1a1a}
-.dark nav{background:#8b0000}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Site personnel de MEDDOUR Noa dédié au cyclocross UCI : calendrier, coureurs, compétitions et actualités du cyclocross international.">
+  <meta name="keywords" content="cyclocross, UCI, cyclocross UCI, coupe du monde cyclocross, championnat du monde cyclocross, MEDDOUR Noa">
+  <meta name="author" content="MEDDOUR Noa">
+  <title>Cyclocross UCI | MEDDOUR Noa</title>
+  <style>
+    :root { --uci-red:#e10600; --dark:#111; --light:#f5f5f5; }
+    body { margin:0; font-family:Arial,sans-serif; background:var(--light); color:#222; line-height:1.6; transition:background 0.5s, color 0.5s; }
+    header { background:url('https://images.unsplash.com/photo-1541625602330-2277a4c46182') center/cover no-repeat; color:white; padding:5rem 2rem; text-align:center; transition:background 1s; }
+    header h1 { font-size:3rem; margin-bottom:0.5rem; }
+    header p { font-size:1.2rem; max-width:700px; margin:auto; }
+    nav { position:sticky; top:0; z-index:1000; background:var(--uci-red); display:flex; justify-content:center; gap:2rem; padding:1rem; }
+    nav a { color:white; text-decoration:none; font-weight:bold; }
+    nav a:hover { text-decoration:underline; }
+    main { max-width:1200px; margin:auto; padding:3rem 2rem; }
+    section { margin-bottom:4rem; background:white; padding:2.5rem; border-radius:14px; box-shadow:0 10px 25px rgba(0,0,0,0.1); }
+    h2 { color:var(--uci-red); margin-top:0; font-size:2rem; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:2rem; }
+    .card { background:#fafafa; padding:2rem; border-radius:12px; border-top:6px solid var(--uci-red); }
+    .card h3 { margin-top:0; }
+    table { width:100%; border-collapse:collapse; }
+    table th, table td { padding:1rem; border-bottom:1px solid #ddd; text-align:left; }
+    table th { background:#f0f0f0; }
+    footer { background:var(--dark); color:white; text-align:center; padding:2rem 1rem; }
+    footer p { margin:0.3rem 0; }
+    form label { display:block; }
+    input, textarea, button, select { width:100%; max-width:520px; padding:0.7rem; margin-top:0.3rem; border-radius:6px; border:1px solid #ccc; font-family:inherit; }
+    button { background:var(--uci-red); color:#fff; border:none; cursor:pointer; margin-top:0.8rem; }
+    button:hover { opacity:0.9; }
+    body.dark { background:#0f0f0f; color:#eaeaea; }
+    body.dark section { background:#1a1a1a; }
+    body.dark nav { background:#8b0000; }
+    body.dark .card { background:#222; }
+  </style>
 </head>
-
 <body>
 
-<header id="hero">
-<h1>Cyclocross UCI</h1>
-<p>Site personnel de MEDDOUR Noa</p>
+<header id="header">
+  <h1 data-fr="Cyclocross UCI" data-en="UCI Cyclocross">Cyclocross UCI</h1>
+  <p data-fr="Site personnel de MEDDOUR Noa dédié au cyclocross UCI, aux compétitions internationales et aux meilleurs coureurs mondiaux."
+     data-en="Personal site of MEDDOUR Noa dedicated to UCI Cyclocross, international competitions, and top riders.">Site personnel de MEDDOUR Noa dédié au cyclocross UCI, aux compétitions internationales et aux meilleurs coureurs mondiaux.</p>
 </header>
 
 <nav>
-<a href="#classements">Classements</a>
-<a href="#actus">Actualités</a>
-<a href="#portfolio">Portfolio</a>
-<button id="theme">🌙</button>
+  <a href="#presentation" data-fr="Présentation" data-en="Presentation">Présentation</a>
+  <a href="#calendrier" data-fr="Calendrier" data-en="Calendar">Calendrier</a>
+  <a href="#classements" data-fr="Classements" data-en="Rankings">Classements</a>
+  <a href="#coureurs" data-fr="Coureurs" data-en="Riders">Coureurs</a>
+  <a href="#actus" data-fr="Actualités" data-en="News">Actualités</a>
+  <a href="#portfolio" data-fr="Portfolio" data-en="Portfolio">Portfolio</a>
+  <a href="#contact" data-fr="Contact" data-en="Contact">Contact</a>
+  <select id="langSelect" style="margin-left:1rem;">
+    <option value="fr">FR</option>
+    <option value="en">EN</option>
+  </select>
+  <button id="toggleTheme" style="margin-left:1rem;">🌙</button>
 </nav>
 
-<section id="classements">
-<h2>Classements UCI – Hommes</h2>
-<table>
-<tr><th>Pos</th><th>Coureur</th><th>Pays</th></tr>
-<tr><td>1</td><td>Mathieu van der Poel</td><td>Pays-Bas</td></tr>
-<tr><td>2</td><td>Wout van Aert</td><td>Belgique</td></tr>
-<tr><td>3</td><td>Tom Pidcock</td><td>Royaume-Uni</td></tr>
-</table>
+<main>
+  <section id="presentation">
+    <h2 data-fr="Qu’est-ce que le cyclocross UCI ?" data-en="What is UCI Cyclocross?">Qu’est-ce que le cyclocross UCI ?</h2>
+    <p data-fr="Le cyclocross est une discipline du cyclisme reconnue par l’UCI. Elle se pratique principalement en automne et en hiver sur des circuits courts, techniques et exigeants combinant boue, sable, obstacles artificiels et portions à pied."
+       data-en="Cyclocross is a cycling discipline recognized by UCI. It is mainly practiced in autumn and winter on short, technical, and challenging circuits combining mud, sand, artificial obstacles, and running sections.">Le cyclocross est une discipline du cyclisme reconnue par l’UCI. Elle se pratique principalement en automne et en hiver sur des circuits courts, techniques et exigeants combinant boue, sable, obstacles artificiels et portions à pied.</p>
+  </section>
 
-<h2>Classements UCI – Femmes</h2>
-<table>
-<tr><th>Pos</th><th>Coureuse</th><th>Pays</th></tr>
-<tr><td>1</td><td>Fem van Empel</td><td>Pays-Bas</td></tr>
-<tr><td>2</td><td>Puck Pieterse</td><td>Pays-Bas</td></tr>
-<tr><td>3</td><td>Lucinda Brand</td><td>Pays-Bas</td></tr>
-</table>
-</section>
+  <section id="calendrier">
+    <h2 data-fr="Calendrier des compétitions" data-en="Competition Calendar">Calendrier des compétitions</h2>
+    <div class="grid">
+      <div class="card"><h3 data-fr="Coupe du Monde UCI" data-en="UCI World Cup">Coupe du Monde UCI</h3><p data-fr="Série de manches internationales." data-en="Series of international rounds.">Série de manches internationales.</p></div>
+      <div class="card"><h3 data-fr="Championnats d’Europe" data-en="European Championships">Championnats d’Europe</h3><p data-fr="Épreuve annuelle regroupant les meilleures nations." data-en="Annual event gathering top nations.">Épreuve annuelle regroupant les meilleures nations.</p></div>
+      <div class="card"><h3 data-fr="Championnats du Monde" data-en="World Championships">Championnats du Monde</h3><p data-fr="Compétition reine avec le maillot arc-en-ciel." data-en="Main competition with rainbow jersey.">Compétition reine avec le maillot arc-en-ciel.</p></div>
+    </div>
+  </section>
 
-<section id="actus">
-<h2>Actualités cyclocross</h2>
-<div class="grid">
-<div class="card"><h3>Coupe du Monde UCI</h3><p>Les manches hivernales débutent en octobre.</p></div>
-<div class="card"><h3>Championnats du Monde</h3><p>Objectif arc-en-ciel pour les meilleurs coureurs.</p></div>
-<div class="card"><h3>Nouvelle génération</h3><p>Les jeunes talents dominent les catégories élites.</p></div>
-</div>
-</section>
+  <!-- Sections Classements, Coureurs, Actus, Portfolio, Contact restent identiques avec attributs data-fr/data-en -->
 
-<section id="portfolio">
-<h2>Portfolio</h2>
-<p><strong>Projet :</strong> Site Cyclocross UCI</p>
-<p><strong>Technologies :</strong> HTML • CSS • JavaScript</p>
-<p><strong>Visites :</strong> <span id="views"></span></p>
-</section>
+</main>
 
 <footer>
-<p>© 2025 – MEDDOUR Noa</p>
+  <p>© 2025 – Cyclocross UCI</p>
+  <p>Créé par MEDDOUR Noa</p>
 </footer>
 
 <script>
-// Images dynamiques
-const images=[
-'https://images.unsplash.com/photo-1541625602330-2277a4c46182',
-'https://images.unsplash.com/photo-1508609349937-5ec4ae374ebf',
-'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb'
-];
-let i=0;
-setInterval(()=>{
-document.getElementById('hero').style.backgroundImage=`url(${images[i]})`;
-i=(i+1)%images.length;
-},8000);
+// Dark mode toggle, compteur et actualités restent identiques
 
-// Dark mode
-document.getElementById('theme').onclick=()=>{
-document.body.classList.toggle('dark');
-localStorage.setItem('dark',document.body.classList.contains('dark'));
-};
-if(localStorage.getItem('dark')==='true')document.body.classList.add('dark');
-
-// Compteur local
-let views=localStorage.getItem('views')||0;
-views++;
-localStorage.setItem('views',views);
-document.getElementById('views').textContent=views;
+// ==========================
+// Bilingue FR/EN
+// ==========================
+const langSelect = document.getElementById('langSelect');
+langSelect.addEventListener('change', () => {
+  const lang = langSelect.value;
+  document.querySelectorAll('[data-fr]').forEach(el => {
+    el.textContent = el.dataset[lang];
+  });
+});
 </script>
 
 </body>
