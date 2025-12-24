@@ -3,221 +3,228 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Site personnel de MEDDOUR Noa dédié au cyclocross UCI : actualités, classements, calendrier et coureurs internationaux.">
+<meta name="keywords" content="cyclocross, UCI, cyclocross UCI, MEDDOUR Noa, calendrier, classements, actualités">
+<meta name="author" content="MEDDOUR Noa">
 <title>Cyclocross UCI | MEDDOUR Noa</title>
 
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<!-- Open Graph -->
+<meta property="og:title" content="Cyclocross UCI | MEDDOUR Noa" />
+<meta property="og:description" content="Suivez les actualités, classements et calendrier du cyclocross UCI." />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="https://images.unsplash.com/photo-1541625602330-2277a4c46182" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Cyclocross UCI | MEDDOUR Noa" />
+<meta name="twitter:description" content="Suivez les actualités, classements et calendrier du cyclocross UCI." />
+<meta name="twitter:image" content="https://images.unsplash.com/photo-1541625602330-2277a4c46182" />
 
 <style>
-:root {
-  --red:#e10600;
-  --dark:#111;
-  --light:#f5f5f5;
-}
-body {
-  margin:0;
-  font-family:Arial, sans-serif;
-  background:var(--light);
-  color:#222;
-}
-body.dark {
-  background:#0f0f0f;
-  color:#eee;
-}
-header {
-  color:white;
-  text-align:center;
-  padding:5rem 1rem;
-  background-size:cover;
-  background-position:center;
-}
-nav {
-  background:var(--red);
-  padding:1rem;
-  display:flex;
-  justify-content:center;
-  gap:1.5rem;
-  position:sticky;
-  top:0;
-}
-nav a, nav button {
-  color:white;
-  background:none;
-  border:none;
-  font-weight:bold;
-  cursor:pointer;
-}
-main {
-  max-width:1200px;
-  margin:auto;
-  padding:2rem;
-}
-section {
-  background:white;
-  padding:2rem;
-  margin-bottom:3rem;
-  border-radius:12px;
-}
-body.dark section { background:#1a1a1a; }
-h2 { color:var(--red); }
-.grid {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:1.5rem;
-}
-.card {
-  background:#fafafa;
-  padding:1.5rem;
-  border-radius:10px;
-  border-top:5px solid var(--red);
-}
-body.dark .card { background:#222; }
+:root { --uci-red:#e10600; --dark:#111; --light:#f5f5f5; }
+body { margin:0; font-family:Arial,sans-serif; background:var(--light); color:#222; line-height:1.6; transition: background 0.8s, color 0.8s; }
+header { background:url('https://images.unsplash.com/photo-1541625602330-2277a4c46182') center/cover no-repeat; color:white; padding:5rem 2rem; text-align:center; transition: background 1s; }
+header h1 { font-size:3rem; margin-bottom:0.5rem; }
+header p { font-size:1.2rem; max-width:700px; margin:auto; }
+nav { position:sticky; top:0; z-index:1000; background:var(--uci-red); display:flex; justify-content:center; gap:1rem; padding:1rem; flex-wrap:wrap; }
+nav a { color:white; text-decoration:none; font-weight:bold; }
+nav a:hover { text-decoration:underline; }
+main { max-width:1200px; margin:auto; padding:2rem; }
+section { margin-bottom:4rem; background:white; padding:2rem; border-radius:14px; box-shadow:0 10px 25px rgba(0,0,0,0.1); }
+h2 { color:var(--uci-red); margin-top:0; font-size:2rem; }
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:2rem; }
+.card { background:#fafafa; padding:1.5rem; border-radius:12px; border-top:6px solid var(--uci-red); }
+.card h3 { margin-top:0; }
 table { width:100%; border-collapse:collapse; }
-th,td { padding:0.8rem; border-bottom:1px solid #ccc; }
-#map { height:350px; border-radius:12px; }
-footer {
-  background:#111;
-  color:white;
-  text-align:center;
-  padding:1.5rem;
-}
+table th, table td { padding:1rem; border-bottom:1px solid #ddd; text-align:left; }
+table th { background:#f0f0f0; }
+footer { background:var(--dark); color:white; text-align:center; padding:2rem 1rem; }
+footer p { margin:0.3rem 0; }
+input, textarea, button { width:100%; max-width:520px; padding:0.7rem; margin-top:0.3rem; border-radius:6px; border:1px solid #ccc; font-family:inherit; }
+button { background:var(--uci-red); color:#fff; border:none; cursor:pointer; margin-top:0.8rem; }
+button:hover { opacity:0.9; }
+body.dark { background:#0f0f0f; color:#eaeaea; }
+body.dark section { background:#1a1a1a; }
+body.dark nav { background:#8b0000; }
+body.dark .card { background:#222; }
 </style>
 </head>
-
 <body>
 
-<header id="hero">
-  <h1>Cyclocross UCI</h1>
-  <p id="subtitle"></p>
+<header id="header">
+<h1>Cyclocross UCI</h1>
+<p>Site personnel de MEDDOUR Noa dédié au cyclocross UCI, aux compétitions internationales et aux meilleurs coureurs mondiaux.</p>
 </header>
 
 <nav>
-  <a href="#actus">Actualités</a>
-  <a href="#classements">Classements</a>
-  <a href="#calendrier">Calendrier</a>
-  <button id="lang">🇬🇧</button>
-  <button id="theme">🌙</button>
+<a href="#presentation">Présentation</a>
+<a href="#calendrier">Calendrier</a>
+<a href="#classements">Classements</a>
+<a href="#coureurs">Coureurs</a>
+<a href="#actus">Actualités</a>
+<a href="#contact">Contact</a>
+<button id="toggleTheme">🌙</button>
+<button id="toggleLang">EN/FR</button>
+<input type="text" id="search" placeholder="Rechercher..." style="width:200px;padding:0.4rem;">
 </nav>
 
 <main>
-
-<section id="actus">
-<h2 id="newsTitle"></h2>
-<div id="news" class="grid"></div>
-</section>
-
-<section id="classements">
-<h2 id="rankTitle"></h2>
-<h3>Hommes</h3>
-<table>
-<tr><th>#</th><th>Coureur</th><th>Nation</th></tr>
-<tr><td>1</td><td>Mathieu van der Poel</td><td>NED</td></tr>
-<tr><td>2</td><td>Wout van Aert</td><td>BEL</td></tr>
-<tr><td>3</td><td>Tom Pidcock</td><td>GBR</td></tr>
-</table>
-
-<h3>Femmes</h3>
-<table>
-<tr><th>#</th><th>Coureuse</th><th>Nation</th></tr>
-<tr><td>1</td><td>Fem van Empel</td><td>NED</td></tr>
-<tr><td>2</td><td>Puck Pieterse</td><td>NED</td></tr>
-<tr><td>3</td><td>Lucinda Brand</td><td>NED</td></tr>
-</table>
+<section id="presentation">
+<h2>Qu’est-ce que le cyclocross UCI ?</h2>
+<p>Le cyclocross est une discipline du cyclisme reconnue par l’UCI. Elle se pratique en automne et en hiver sur des circuits courts, techniques et exigeants combinant boue, sable, obstacles artificiels et portions à pied.</p>
 </section>
 
 <section id="calendrier">
-<h2 id="calTitle"></h2>
-<ul>
-<li>📍 Namur – 15 décembre</li>
-<li>📍 Anvers – 22 décembre</li>
-<li>📍 Hoogerheide – 26 janvier</li>
-</ul>
-<div id="map"></div>
+<h2>Calendrier des compétitions</h2>
+<div class="grid" id="calendarGrid"></div>
 </section>
 
-<section>
-<p><strong>Vues :</strong> <span id="views"></span></p>
+<section id="classements">
+<h2>Classements UCI</h2>
+<div class="grid" id="rankingGrid"></div>
 </section>
 
+<section id="coureurs">
+<h2>Coureurs emblématiques</h2>
+<div class="grid" id="ridersGrid"></div>
+</section>
+
+<section id="actus">
+<h2>Actualités Cyclocross</h2>
+<div class="grid" id="news"><p>Chargement des actualités...</p></div>
+</section>
+
+<section id="contact">
+<h2>Contact</h2>
+<form action="https://formspree.io/f/mqezwypg" method="POST">
+<label>Nom<br><input type="text" name="name" required></label>
+<label>Email<br><input type="email" name="email" required></label>
+<label>Message<br><textarea name="message" rows="5" required></textarea></label>
+<button type="submit">Envoyer</button>
+</form>
+<p><strong>Nombre de vues :</strong> <span id="views">Chargement...</span></p>
+</section>
 </main>
 
 <footer>
-<p>© 2025 – MEDDOUR Noa</p>
+<p>© 2025 – Cyclocross UCI</p>
+<p>Créé par MEDDOUR Noa</p>
 </footer>
 
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-// ================= IMAGES =================
-const images=[
-"https://images.unsplash.com/photo-1605810230434-7631ac76ec81",
-"https://images.unsplash.com/photo-1541625602330-2277a4c46182",
-"https://images.unsplash.com/photo-1600607687920-4e2a09f48f63"
-];
-let imgIndex=0;
-setInterval(()=>{
-  document.getElementById("hero").style.backgroundImage=`url(${images[imgIndex]})`;
-  imgIndex=(imgIndex+1)%images.length;
-},4000);
+// ---------------------------
+// Dark Mode Toggle
+// ---------------------------
+const btnTheme=document.getElementById('toggleTheme');
+btnTheme.onclick=()=>{
+document.body.classList.toggle('dark');
+localStorage.setItem('theme',document.body.classList.contains('dark')?'dark':'light');
+};
+if(localStorage.getItem('theme')==='dark') document.body.classList.add('dark');
 
-// ================= LANGUE =================
-let lang="fr";
-const text={
-fr:{
-sub:"Actualités, classements et calendrier du cyclocross UCI",
-news:"Actualités cyclocross",
-rank:"Classements UCI",
-cal:"Calendrier des courses"
-},
-en:{
-sub:"Cyclocross UCI news, rankings and calendar",
-news:"Cyclocross news",
-rank:"UCI rankings",
-cal:"Race calendar"
-}
+// ---------------------------
+// Language Toggle
+// ---------------------------
+let lang='fr';
+document.getElementById('toggleLang').onclick=()=>{
+lang=(lang==='fr')?'en':'fr';
+alert('Langue changée: '+lang.toUpperCase());
+// Ici on pourrait traduire textes dynamiquement
 };
 
-function renderLang(){
-  subtitle.textContent=text[lang].sub;
-  newsTitle.textContent=text[lang].news;
-  rankTitle.textContent=text[lang].rank;
-  calTitle.textContent=text[lang].cal;
-}
-langBtn.onclick=()=>{
-  lang=lang==="fr"?"en":"fr";
-  langBtn.textContent=lang==="fr"?"🇬🇧":"🇫🇷";
-  renderLang();
-};
-renderLang();
+// ---------------------------
+// Compteur global de vues
+// ---------------------------
+(function(){
+const el=document.getElementById('views');
+if(!el) return;
+fetch('https://api.countapi.xyz/hit/meddournoa-cyclocross/site')
+.then(res=>res.json())
+.then(data=>el.textContent=data.value)
+.catch(()=>el.textContent='indisponible');
+})();
 
-// ================= ACTUS =================
-const newsData=[
-{t:"Van der Poel domine la Coupe du Monde",d:"Victoire éclatante sur terrain boueux."},
-{t:"Van Empel intouchable cet hiver",d:"La Néerlandaise enchaîne les succès."},
-{t:"Le cyclocross gagne en popularité",d:"Affluence record sur les manches UCI."}
+// ---------------------------
+// Flux RSS Actualités toutes les 1 min
+// ---------------------------
+(function(){
+const cacheKey='rssCache';
+const cacheTime=60000;
+const proxy='https://api.allorigins.win/get?url=';
+const rss='https://www.cyclingnews.com/rss/news/';
+function fetchNews(){
+fetch(proxy+encodeURIComponent(rss))
+.then(r=>r.json())
+.then(d=>{
+const parser=new DOMParser();
+const xml=parser.parseFromString(d.contents,'text/xml');
+const items=Array.from(xml.querySelectorAll('item')).slice(0,6).map(i=>({
+title:i.querySelector('title')?.textContent||'',
+link:i.querySelector('link')?.textContent||'',
+description:i.querySelector('description')?.textContent||''
+}));
+const container=document.getElementById('news');
+container.innerHTML='';
+items.forEach(i=>{
+const div=document.createElement('div');
+div.className='card';
+div.innerHTML=`<h3>${i.title}</h3><p>${i.description.substring(0,120)}...</p><a href='${i.link}' target='_blank'>Lire</a>`;
+container.appendChild(div);
+});
+})
+.catch(()=>{const c=document.getElementById('news'); if(c)c.innerHTML='<p>Impossible de charger les actualités.</p>';});
+}
+fetchNews();
+setInterval(fetchNews,cacheTime);
+})();
+
+// ---------------------------
+// Classements UCI Hommes/Femmes - exemple statique
+// ---------------------------
+const rankingData=[
+{rank:1,name:'Mathieu van der Poel',nation:'Pays-Bas',gender:'M'},
+{rank:2,name:'Wout van Aert',nation:'Belgique',gender:'M'},
+{rank:3,name:'Tom Pidcock',nation:'Royaume-Uni',gender:'M'},
+{rank:1,name:'Fem van Empel',nation:'Pays-Bas',gender:'F'},
+{rank:2,name:'Ceylin del Carmen Alvarado',nation:'Pays-Bas',gender:'F'},
+{rank:3,name:'Lucinda Brand',nation:'Pays-Bas',gender:'F'}
 ];
-news.innerHTML="";
-newsData.forEach(n=>{
-  news.innerHTML+=`<div class="card"><h3>${n.t}</h3><p>${n.d}</p></div>`;
+const rankingGrid=document.getElementById('rankingGrid');
+rankingData.forEach(c=>{
+const div=document.createElement('div');
+div.className='card';
+div.innerHTML=`<h3>${c.rank}. ${c.name}</h3><p>${c.nation} - ${c.gender}</p>`;
+rankingGrid.appendChild(div);
 });
 
-// ================= VUES =================
-let v=localStorage.getItem("views")||0;
-v++;
-localStorage.setItem("views",v);
-views.textContent=v;
+// ---------------------------
+// Recherche instantanée
+// ---------------------------
+const searchInput=document.getElementById('search');
+searchInput.addEventListener('input', e=>{
+const q=e.target.value.toLowerCase();
+document.querySelectorAll('.card').forEach(card=>{
+const text=card.textContent.toLowerCase();
+card.style.display=text.includes(q)?'':'none';
+});
+});
 
-// ================= DARK =================
-theme.onclick=()=>{
-  document.body.classList.toggle("dark");
-};
+// ---------------------------
+// Rotation images de fond header
+// ---------------------------
+const images=[
+'https://images.unsplash.com/photo-1541625602330-2277a4c46182',
+'https://images.unsplash.com/photo-1608889175475-6e873df0d9b3',
+'https://images.unsplash.com/photo-1573530368262-66e7c9c01efb',
+'https://images.unsplash.com/photo-1508609349937-5ec4ae374ebf'
+];
+let idx=0;
+setInterval(()=>{
+idx=(idx+1)%images.length;
+document.getElementById('header').style.backgroundImage=`url('${images[idx]}')`;
+},15000);
 
-// ================= MAP =================
-const map=L.map("map").setView([50.5,4.7],6);
-L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(map);
-L.marker([50.4649,4.867]).addTo(map).bindPopup("Namur");
-L.marker([51.2211,4.3997]).addTo(map).bindPopup("Anvers");
-L.marker([51.4426,4.6297]).addTo(map).bindPopup("Hoogerheide");
 </script>
-
 </body>
 </html>
