@@ -6,8 +6,8 @@
 <title>Cyclocross UCI | MEDDOUR Noa</title>
 <style>
 :root { --uci-red:#e10600; --dark:#111; --light:#f5f5f5; }
-body { margin:0; font-family:Arial,sans-serif; background:var(--light); color:#222; line-height:1.6; transition: background 0.5s, color 0.5s;}
-header { color:white; padding:5rem 2rem; text-align:center; background-size:cover; background-position:center; transition: background 1s;}
+body { margin:0; font-family:Arial,sans-serif; background:var(--light); color:#222; line-height:1.6; transition: background 0.5s, color 0.5s; }
+header { background:center/cover no-repeat; color:white; padding:5rem 2rem; text-align:center; transition: background-image 1s ease-in-out; }
 nav { position:sticky; top:0; z-index:1000; background:var(--uci-red); display:flex; justify-content:center; gap:2rem; padding:1rem; }
 nav a { color:white; text-decoration:none; font-weight:bold; }
 nav a:hover { text-decoration:underline; }
@@ -21,10 +21,8 @@ table { width:100%; border-collapse:collapse; }
 table th, table td { padding:1rem; border-bottom:1px solid #ddd; text-align:left; }
 table th { background:#f0f0f0; }
 footer { background:var(--dark); color:white; text-align:center; padding:2rem 1rem; }
-footer p { margin:0.3rem 0; }
-form label { display:block; }
-input, textarea, button { width:100%; max-width:520px; padding:0.7rem; margin-top:0.3rem; border-radius:6px; border:1px solid #ccc; font-family:inherit; }
-button { background:var(--uci-red); color:#fff; border:none; cursor:pointer; margin-top:0.8rem; }
+button, input, textarea { font-family:inherit; }
+button { background:var(--uci-red); color:white; border:none; padding:0.7rem 1rem; cursor:pointer; border-radius:6px; }
 button:hover { opacity:0.9; }
 body.dark { background:#0f0f0f; color:#eaeaea; }
 body.dark section { background:#1a1a1a; }
@@ -33,140 +31,174 @@ body.dark .card { background:#222; }
 </style>
 </head>
 <body>
-
 <header id="header">
-  <h1>Cyclocross UCI</h1>
-  <p>Site personnel de MEDDOUR Noa dédié au cyclocross UCI</p>
+  <h1 data-fr="Cyclocross UCI" data-en="Cyclocross UCI">Cyclocross UCI</h1>
+  <p data-fr="Site personnel de MEDDOUR Noa dédié au cyclocross UCI, aux compétitions internationales et aux meilleurs coureurs mondiaux." data-en="Personal site by MEDDOUR Noa dedicated to UCI cyclocross, international competitions and top riders.">Site personnel de MEDDOUR Noa dédié au cyclocross UCI, aux compétitions internationales et aux meilleurs coureurs mondiaux.</p>
 </header>
-
 <nav>
-  <a href="#presentation">Présentation</a>
-  <a href="#calendrier">Calendrier</a>
-  <a href="#classements">Classements</a>
-  <a href="#coureurs">Coureurs</a>
-  <a href="#actus">Actualités</a>
-  <a href="#contact">Contact</a>
+  <a href="#presentation" data-fr="Présentation" data-en="Presentation">Présentation</a>
+  <a href="#calendrier" data-fr="Calendrier" data-en="Calendar">Calendrier</a>
+  <a href="#classements" data-fr="Classements" data-en="Rankings">Classements</a>
+  <a href="#coureurs" data-fr="Coureurs" data-en="Riders">Coureurs</a>
+  <a href="#actus" data-fr="Actualités" data-en="News">Actualités</a>
+  <a href="#contact" data-fr="Contact" data-en="Contact">Contact</a>
+  <button id="toggleLang">EN</button>
   <button id="toggleTheme">🌙</button>
 </nav>
-
 <main>
-<section id="presentation">
-<h2>Qu’est-ce que le cyclocross UCI ?</h2>
-<p>Discipline du cyclisme reconnue par l’UCI, circuits courts et techniques.</p>
-</section>
+  <section id="presentation">
+    <h2 data-fr="Qu’est-ce que le cyclocross UCI ?" data-en="What is UCI Cyclocross?">Qu’est-ce que le cyclocross UCI ?</h2>
+    <p data-fr="Le cyclocross est une discipline du cyclisme reconnue par l’UCI..." data-en="Cyclocross is a cycling discipline recognized by UCI...">Le cyclocross est une discipline du cyclisme reconnue par l’UCI...</p>
+  </section>
 
-<section id="calendrier">
-<h2>Calendrier des compétitions</h2>
-<div class="grid" id="calendar">
-  <div class="card"><h3>Coupe du Monde UCI</h3><p>Série de manches internationales.</p></div>
-  <div class="card"><h3>Championnats d’Europe</h3><p>Épreuve annuelle.</p></div>
-  <div class="card"><h3>Championnats du Monde</h3><p>Maillot arc-en-ciel.</p></div>
-</div>
-</section>
+  <section id="calendrier">
+    <h2 data-fr="Calendrier des compétitions" data-en="Competition Calendar">Calendrier des compétitions</h2>
+    <div class="grid" id="calendar"></div>
+  </section>
 
-<section id="classements">
-<h2>Classements UCI</h2>
-<table id="uciTable">
-<thead><tr><th>Rang</th><th>Nom</th><th>Pays</th><th>Catégorie</th></tr></thead>
-<tbody><tr><td colspan="4">Chargement…</td></tr></tbody>
-</table>
-</section>
+  <section id="classements">
+    <h2 data-fr="Classements UCI" data-en="UCI Rankings">Classements UCI</h2>
+    <div class="grid" id="rankings"></div>
+  </section>
 
-<section id="actus">
-<h2>Actualités du cyclocross</h2>
-<div id="news" class="grid"><p>Chargement…</p></div>
-</section>
+  <section id="coureurs">
+    <h2 data-fr="Coureurs emblématiques" data-en="Famous Riders">Coureurs emblématiques</h2>
+    <div class="grid" id="riders"></div>
+  </section>
 
-<section id="contact">
-<h2>Contact</h2>
-<form action="https://formspree.io/f/TON_FORMSPREE_ID" method="POST">
-<label>Nom<br><input type="text" name="name" required></label>
-<label>Email<br><input type="email" name="email" required></label>
-<label>Message<br><textarea name="message" rows="5" required></textarea></label>
-<button type="submit">Envoyer</button>
-</form>
-<p><strong>Nombre de vues :</strong> <span id="views">Chargement...</span></p>
-</section>
+  <section id="actus">
+    <h2 data-fr="Actualités Cyclocross" data-en="Cyclocross News">Actualités Cyclocross</h2>
+    <div class="grid" id="news"><p data-fr="Chargement des actualités…" data-en="Loading news…">Chargement des actualités…</p></div>
+  </section>
+
+  <section id="contact">
+    <h2 data-fr="Contact" data-en="Contact">Contact</h2>
+    <form action="https://formspree.io/f/mqezwypg" method="POST">
+      <label data-fr="Nom" data-en="Name">Nom<br><input type="text" name="name" required></label>
+      <label data-fr="Email" data-en="Email">Email<br><input type="email" name="email" required></label>
+      <label data-fr="Message" data-en="Message">Message<br><textarea name="message" rows="5" required></textarea></label>
+      <button type="submit" data-fr="Envoyer" data-en="Send">Envoyer</button>
+    </form>
+    <p><strong data-fr="Nombre de vues :" data-en="Views:">Nombre de vues :</strong> <span id="views">0</span></p>
+  </section>
 </main>
-
 <footer>
 <p>© 2025 – Cyclocross UCI</p>
 <p>Créé par MEDDOUR Noa</p>
 </footer>
-
 <script>
-// ---------- Dark Mode ----------
-const btn=document.getElementById('toggleTheme');
-if(btn){
-  btn.onclick=()=>{document.body.classList.toggle('dark'); localStorage.setItem('theme',document.body.classList.contains('dark')?'dark':'light');};
-  if(localStorage.getItem('theme')==='dark') document.body.classList.add('dark');
-}
+// ===== Dark Mode =====
+const btnTheme=document.getElementById('toggleTheme');
+if(btnTheme){btnTheme.onclick=()=>{
+document.body.classList.toggle('dark');
+localStorage.setItem('theme',document.body.classList.contains('dark')?'dark':'light');
+}};
+if(localStorage.getItem('theme')==='dark') document.body.classList.add('dark');
 
-// ---------- Background aléatoire ----------
-const backgrounds=[
-"https://images.unsplash.com/photo-1578843530865-05cd1a79ef7b",
-"https://images.unsplash.com/photo-1609079875705-7d826fd91512",
-"https://images.unsplash.com/photo-1605069006320-49f0fbd1eaae",
-"https://images.unsplash.com/photo-1573250286325-12b6e7c6f2c4",
-"https://images.unsplash.com/photo-1573250286330-8e6a291d0ad1",
-"https://images.unsplash.com/photo-1609008901531-9b85e62db09e",
-"https://images.unsplash.com/photo-1609008901543-0b04128fc104",
-"https://images.unsplash.com/photo-1609008901555-12a0b5f786cf",
-"https://images.unsplash.com/photo-1609008901568-5b7b13dfdc1a",
-"https://images.unsplash.com/photo-1609008901579-5c10d0b8cfae"
-];
+// ===== Language Toggle =====
+const btnLang=document.getElementById('toggleLang');
+let lang='fr';
+btnLang.onclick=()=>{
+lang=(lang==='fr'?'en':'fr');
+document.querySelectorAll('[data-fr]').forEach(el=>{
+el.textContent=el.dataset[lang];
+});
+btnLang.textContent=lang==='fr'?'EN':'FR';
+};
+
+// ===== Background images =====
 const header=document.getElementById('header');
-function changeBackground(){ header.style.backgroundImage=`url(${backgrounds[Math.floor(Math.random()*backgrounds.length)]})`; }
-changeBackground(); setInterval(changeBackground,60000);
+const images=[
+'https://images.unsplash.com/photo-1570137515065-d1c82f6a6d10',
+'https://images.unsplash.com/photo-1543416950-c20e0f8a19b4',
+'https://images.unsplash.com/photo-1554127781-df1552a64c6b',
+'https://images.unsplash.com/photo-1606222339030-9406a2294ed1',
+'https://images.unsplash.com/photo-1592324749460-1b1f880ee768',
+'https://images.unsplash.com/photo-1597262975002-c5c3b14bbd62',
+'https://images.unsplash.com/photo-1602526210046-9d70edb7f70b',
+'https://images.unsplash.com/photo-1611507707093-6192f6b36c02',
+'https://images.unsplash.com/photo-1548191265-cc70d3d45ba1',
+'https://images.unsplash.com/photo-1503736334956-4c8f8e92946d'
+];
+let bgIndex=0;
+setInterval(()=>{
+bgIndex=(bgIndex+1)%images.length;
+header.style.backgroundImage=`url(${images[bgIndex]})`;
+},30000);
 
-// ---------- Compteur de vues simple ----------
-(function(){
-  const el=document.getElementById('views'); if(!el) return;
-  let key='cyclocross-site';
-  let val=parseInt(localStorage.getItem(key)||0); val++; el.textContent=val; localStorage.setItem(key,val);
-})();
+// ===== Views counter =====
+fetch('https://api.countapi.xyz/hit/meddournoa-cyclocross/site')
+.then(r=>r.json()).then(d=>document.getElementById('views').textContent=d.value).catch(()=>{});
 
-// ---------- Classements UCI via Google Sheet ----------
-(async function(){
-  const sheetId="TON_GOOGLE_SHEET_ID";
-  const url=`https://spreadsheets.google.com/feeds/list/${sheetId}/od6/public/values?alt=json`;
-  try{
-    const res=await fetch(url);
-    const data=await res.json();
-    const entries=data.feed.entry;
-    const tbody=document.querySelector('#uciTable tbody');
-    tbody.innerHTML='';
-    entries.forEach(e=>{
-      const rang=e.gsx$rang.$t, nom=e.gsx$nom.$t, pays=e.gsx$pays.$t, cat=e.gsx$categorie.$t;
-      const tr=document.createElement('tr');
-      tr.innerHTML=`<td>${rang}</td><td>${nom}</td><td>${pays}</td><td>${cat}</td>`;
-      tbody.appendChild(tr);
-    });
-  }catch(err){ console.error(err); document.querySelector('#uciTable tbody').innerHTML='<tr><td colspan="4">Erreur chargement</td></tr>'; }
-})();
+// ===== Sample Calendar =====
+const calendar=[
+{date:'2025-01-12',event:'Coupe du Monde - Namur'},
+{date:'2025-01-19',event:'Coupe du Monde - Zonhoven'},
+{date:'2025-01-26',event:'Championnats de Belgique'}
+];
+const calDiv=document.getElementById('calendar');
+calendar.forEach(c=>{
+const div=document.createElement('div');
+div.className='card';
+div.innerHTML=`<h3>${c.date}</h3><p>${c.event}</p>`;
+calDiv.appendChild(div);
+});
 
-// ---------- Actualités RSS cyclocross (1 min) ----------
-(function(){
-  const cacheTime=60000; const proxy='https://api.allorigins.win/get?url='; const rss='https://www.cxmagazine.com/feed/';
-  async function loadNews(){
-    try{
-      const r=await fetch(proxy+encodeURIComponent(rss));
-      const d=await r.json();
-      const parser=new DOMParser(); const xml=parser.parseFromString(d.contents,'text/xml');
-      const items=Array.from(xml.querySelectorAll('item')).slice(0,5);
-      const container=document.getElementById('news'); container.innerHTML='';
-      items.forEach(i=>{
-        const div=document.createElement('div'); div.className='card';
-        div.innerHTML=`<h3>${i.querySelector('title')?.textContent}</h3>
-        <p>${i.querySelector('description')?.textContent.substring(0,120)}...</p>
-        <a href="${i.querySelector('link')?.textContent}" target="_blank">Lire</a>`;
-        container.appendChild(div);
-      });
-    }catch(e){ document.getElementById('news').innerHTML='<p>Impossible de charger les actualités.</p>'; console.error(e);}
-  }
-  loadNews(); setInterval(loadNews,cacheTime);
-})();
+// ===== Sample Riders =====
+const riders=[
+{name:'Mathieu van der Poel',desc:'Pays-Bas'},
+{name:'Wout van Aert',desc:'Belgique'},
+{name:'Fem van Empel',desc:'Pays-Bas'}
+];
+const ridersDiv=document.getElementById('riders');
+riders.forEach(r=>{
+const div=document.createElement('div');
+div.className='card';
+div.innerHTML=`<h3>${r.name}</h3><p>${r.desc}</p>`;
+ridersDiv.appendChild(div);
+});
+
+// ===== Rankings =====
+const rankings=[
+{rank:1,name:'Mathieu van der Poel',cat:'Hommes'},
+{rank:2,name:'Wout van Aert',cat:'Hommes'},
+{rank:1,name:'Fem van Empel',cat:'Femmes'}
+];
+const rankDiv=document.getElementById('rankings');
+rankings.forEach(r=>{
+const div=document.createElement('div');
+div.className='card';
+div.innerHTML=`<h3>${r.cat} #${r.rank}</h3><p>${r.name}</p>`;
+rankDiv.appendChild(div);
+});
+
+// ===== News via RSS Proxy =====
+const proxy='https://api.allorigins.win/get?url=';
+const rss='https://www.cxmagazine.com/feed/';
+function fetchNews(){
+fetch(proxy + encodeURIComponent(rss))
+.then(r=>r.json())
+.then(d=>{
+const parser=new DOMParser();
+const xml=parser.parseFromString(d.contents,'text/xml');
+const items=Array.from(xml.querySelectorAll('item')).slice(0,6).map(i=>({
+title:i.querySelector('title')?.textContent||'',
+link:i.querySelector('link')?.textContent||'',
+description:i.querySelector('description')?.textContent||''
+}));
+const container=document.getElementById('news');
+container.innerHTML='';
+items.forEach(i=>{
+const div=document.createElement('div');
+div.className='card';
+div.innerHTML=`<h3>${i.title}</h3><p>${i.description.substring(0,120)}...</p><a href='${i.link}' target='_blank'>Lire</a>`;
+container.appendChild(div);
+});
+})
+.catch(()=>{document.getElementById('news').innerHTML='<p>Impossible de charger les actualités.</p>';});
+}
+fetchNews();
+setInterval(fetchNews,60000);
 </script>
-
 </body>
 </html>
