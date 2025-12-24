@@ -1,0 +1,12 @@
+{
+  "hommes": [
+    {"position":1,"name":"Mathieu van der Poel","nation":"Pays-Bas"},
+    {"position":2,"name":"Wout van Aert","nation":"Belgique"},
+    {"position":3,"name":"Tom Pidcock","nation":"Royaume-Uni"}
+  ],
+  "femmes": [
+    {"position":1,"name":"Fem van Empel","nation":"Pays-Bas"},
+    {"position":2,"name":"Lucinda Brand","nation":"Pays-Bas"},
+    {"position":3,"name":"Ceylin del Carmen Alvarado","nation":"Pays-Bas"}
+  ]
+}
